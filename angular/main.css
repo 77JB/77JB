@@ -1,20 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   --font-family-nunito_sans: "Nunito Sans", Helvetica, sans-serif;
-  /*
-    COLORS HEX
-  */
   --primary-blue: #003A5A;
   --primary-green: #D2D929;
+  --primary-blue-hsl: hsl(201, 100, 18);
+  --primary-green-hsl: hsl(62, 70, 51);
   --accent-blue: #00233B;
   --font-color-light: #fbfbfb;
-  /*
-    COLORS HSL
-  */
-  --primary-blue-hsl: hsl(201,100,18);
-  --primary-green-hsl: hsl(62,70,51);
-  /*
-      COLORS RGB
-    */
-  --primary-green-rgb: rgb(212, 218, 43);
+  --white: #fafafa;
+  --cultured: #F6F7F9;
+  --ghost-white: #EAECF1;
+  --platinum: #EAECF1;
+  --uranian-blue: #A3D4F5;
+  --neutral: #E7E8EB;
+  --disabled-background: #EBEBEB;
+  --disabled-text: #ababab;
+  --white: #ffffff;
 }
