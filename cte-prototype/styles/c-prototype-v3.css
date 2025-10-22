@@ -1,11 +1,11 @@
-@import url("cte-prototype/styles/_p-colors.css");
-@import url("cte-prototype/styles/_p-tokens.css");
-@import url("cte-prototype/styles/_p-button.css");
-@import url("cte-prototype/styles/_p-togglebutton.css");
-@import url("cte-prototype/styles/_p-datatable.css");
-@import url("cte-prototype/styles/_p-datatable-enhanced.css");
-@import url("cte-prototype/styles/_p-toolbar.css");
-@import url("cte-prototype/styles/_p-table.css");
+@import url("styles/_p-colors.css");
+@import url("styles/_p-tokens.css");
+@import url("styles/_p-button.css");
+@import url("styles/_p-togglebutton.css");
+@import url("styles/_p-datatable.css");
+@import url("styles/_p-datatable-enhanced.css");
+@import url("styles/_p-toolbar.css");
+@import url("styles/_p-table.css");
 
 
 #fileListWrapper {
