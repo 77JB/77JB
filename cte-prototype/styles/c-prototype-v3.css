@@ -1,11 +1,11 @@
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-colors.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-tokens.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-button.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-togglebutton.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-datatable.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-datatable-enhanced.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-toolbar.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/_p-table.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-colors.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-tokens.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-button.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-togglebutton.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-datatable.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-datatable-enhanced.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-toolbar.css");
+@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-table.css");
 
 #fileListWrapper {
   transition: all 0.3s ease;
