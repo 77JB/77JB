@@ -1363,9 +1363,6 @@ body {
   background: 0 0
 }
 .cte-toolbar .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton {
-  border: 1px solid var(--p-surface-border,#dee2e6);
-  border-radius: var(--p-border-radius,1rem);
-  background: var(--p-surface-100,#f8f9fa);
   font-size: .75rem
 }
 .cte-toolbar .p-inputgroup {
