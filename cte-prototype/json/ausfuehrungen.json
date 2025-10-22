@@ -1,0 +1,1997 @@
+[
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "A3",
+    "Varianten_Text": "Polymerglas matt",
+    "id": 1
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 2
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "F3",
+    "Varianten_Text": "Massivholz / Furnier",
+    "id": 3
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 4
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 5
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 6
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "L16",
+    "Varianten_Text": "UV-Lack matt AFP",
+    "id": 7
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 8
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "L4",
+    "Varianten_Text": "Hochglanzlack",
+    "id": 9
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "L6",
+    "Varianten_Text": "UV-Lack matt",
+    "id": 10
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 11
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "L8",
+    "Varianten_Text": "UV-Lack matt Struktur",
+    "id": 12
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "P5",
+    "Varianten_Text": "Lacklaminat hochglanz",
+    "id": 13
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "P6",
+    "Varianten_Text": "Lacklaminat matt",
+    "id": 14
+  },
+  {
+    "Variantenart": 100,
+    "Variantenart_Text": "Frontausführung",
+    "Variante": "S3",
+    "Varianten_Text": "Schichtstoff matt",
+    "id": 15
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G1091",
+    "Varianten_Text": "Glas glanz kristallweiß/satin.",
+    "id": 202
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G1096",
+    "Varianten_Text": "Glas glanz muschelweiß/satin.",
+    "id": 203
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G1101",
+    "Varianten_Text": "Glas glanz weiß/satiniert",
+    "id": 204
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G1121",
+    "Varianten_Text": "Glas glanz kristallgrau/satin.",
+    "id": 205
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G1171",
+    "Varianten_Text": "Glas glanz edelstahlf./satin.",
+    "id": 206
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G1206",
+    "Varianten_Text": "Glas glanz kieselgrau/satin.",
+    "id": 207
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G1211",
+    "Varianten_Text": "Glas glanz sandgrau/satiniert",
+    "id": 208
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G8186",
+    "Varianten_Text": "Schwarzglas glanz/transparent",
+    "id": 209
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G8960",
+    "Varianten_Text": "Greyglas glanz",
+    "id": 210
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G8965",
+    "Varianten_Text": "Ultragreyglas glanz",
+    "id": 211
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G8975",
+    "Varianten_Text": "Rautenglas glanz/transparent",
+    "id": 212
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G8980",
+    "Varianten_Text": "Wabenglas glanz messing/transp",
+    "id": 213
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G932",
+    "Varianten_Text": "Greyglas glanz",
+    "id": 214
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G937",
+    "Varianten_Text": "Klarglas",
+    "id": 215
+  },
+  {
+    "Variantenart": 150,
+    "Variantenart_Text": "Glasausführung",
+    "Variante": "G960",
+    "Varianten_Text": "Glas glanz/satiniert",
+    "id": 216
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "GR20",
+    "Varianten_Text": "Neutrale Glasfront N",
+    "id": 217
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "GR30",
+    "Varianten_Text": "Neutrale Glasfront N",
+    "id": 218
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "GR60",
+    "Varianten_Text": "Neutrale Glasfront N",
+    "id": 219
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "GR70",
+    "Varianten_Text": "Neutrale Glasfront N",
+    "id": 220
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "P-F3",
+    "Varianten_Text": "Programm, Massivholz / Furnier",
+    "id": 221
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "P-L1",
+    "Varianten_Text": "Programm, Satinlack",
+    "id": 222
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "P-L1P",
+    "Varianten_Text": "Programm, Satinlack, Pore",
+    "id": 223
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "P-L4",
+    "Varianten_Text": "Programm, Hochglanzlack",
+    "id": 224
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "P-L7",
+    "Varianten_Text": "Programm, Samtmatt-Lack",
+    "id": 225
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PP-K1",
+    "Varianten_Text": "Programm, Kunststoff",
+    "id": 226
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PP-K6",
+    "Varianten_Text": "Programm, Kunstst.Synchronpore",
+    "id": 227
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PP-L6",
+    "Varianten_Text": "Programm, UV-Lack matt",
+    "id": 228
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PP-L8",
+    "Varianten_Text": "Programm,UV-Lack matt Struktur",
+    "id": 229
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PP-P5",
+    "Varianten_Text": "Programm,Lacklaminat hochglanz",
+    "id": 230
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PP-P6",
+    "Varianten_Text": "Programm, Lacklaminat matt",
+    "id": 231
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PPL16",
+    "Varianten_Text": "Programm, UV-Lack matt AFP",
+    "id": 232
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PS-F3",
+    "Varianten_Text": "Programm, Massivholz / Furnier",
+    "id": 233
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PS-L1",
+    "Varianten_Text": "Programm, Satinlack",
+    "id": 234
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PS-L7",
+    "Varianten_Text": "Programm, Samtmatt-Lack",
+    "id": 235
+  },
+  {
+    "Variantenart": 154,
+    "Variantenart_Text": "Glasrahmen-Ausführung",
+    "Variante": "PSL1P",
+    "Varianten_Text": "Programm, Satinlack, Pore",
+    "id": 236
+  },
+  {
+    "Variantenart": 160,
+    "Variantenart_Text": "Jalousie-Ausführung",
+    "Variante": "GLAS",
+    "Varianten_Text": "Glas ESG",
+    "id": 413
+  },
+  {
+    "Variantenart": 160,
+    "Variantenart_Text": "Jalousie-Ausführung",
+    "Variante": "K9",
+    "Varianten_Text": "Kunststoff kaschiert",
+    "id": 414
+  },
+  {
+    "Variantenart": 200,
+    "Variantenart_Text": "Korpusausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 419
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 436
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 437
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 438
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 439
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 440
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "L5",
+    "Varianten_Text": "UV-Lack hochglanz",
+    "id": 441
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "L6",
+    "Varianten_Text": "UV-Lack matt",
+    "id": 442
+  },
+  {
+    "Variantenart": 206,
+    "Variantenart_Text": "Sichtseiten-Ausführung",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 443
+  },
+  {
+    "Variantenart": 209,
+    "Variantenart_Text": "Korpusinnenausf. Dekor+",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 659
+  },
+  {
+    "Variantenart": 209,
+    "Variantenart_Text": "Korpusinnenausf. Dekor+",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 660
+  },
+  {
+    "Variantenart": 209,
+    "Variantenart_Text": "Korpusinnenausf. Dekor+",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 661
+  },
+  {
+    "Variantenart": 209,
+    "Variantenart_Text": "Korpusinnenausf. Dekor+",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 662
+  },
+  {
+    "Variantenart": 209,
+    "Variantenart_Text": "Korpusinnenausf. Dekor+",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 663
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "0",
+    "Varianten_Text": "ohne Bohrung mit Griff",
+    "id": 759
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "1",
+    "Varianten_Text": "Waage-/Senkrechte Anord. Griff",
+    "id": 760
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "2",
+    "Varianten_Text": "Waagerechte Anor.Griff / Knopf",
+    "id": 761
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "6",
+    "Varianten_Text": "Waagerechte mittige Anordnung",
+    "id": 762
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "9",
+    "Varianten_Text": "Waager. Anordnung Griffleiste",
+    "id": 763
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "98",
+    "Varianten_Text": "X1/X2/X5 Griffmuldenprofil",
+    "id": 764
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "99",
+    "Varianten_Text": "ohne Bohrung ohne Griff",
+    "id": 765
+  },
+  {
+    "Variantenart": 400,
+    "Variantenart_Text": "Sockelausführung",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 766
+  },
+  {
+    "Variantenart": 400,
+    "Variantenart_Text": "Sockelausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 767
+  },
+  {
+    "Variantenart": 400,
+    "Variantenart_Text": "Sockelausführung",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 768
+  },
+  {
+    "Variantenart": 400,
+    "Variantenart_Text": "Sockelausführung",
+    "Variante": "K9",
+    "Varianten_Text": "Kunststoff kaschiert",
+    "id": 769
+  },
+  {
+    "Variantenart": 400,
+    "Variantenart_Text": "Sockelausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 770
+  },
+  {
+    "Variantenart": 400,
+    "Variantenart_Text": "Sockelausführung",
+    "Variante": "M1",
+    "Varianten_Text": "Metall Alu-Lamelle massiv",
+    "id": 771
+  },
+  {
+    "Variantenart": 400,
+    "Variantenart_Text": "Sockelausführung",
+    "Variante": "U1",
+    "Varianten_Text": "Umfeld Kunststoff",
+    "id": 772
+  },
+  {
+    "Variantenart": 402,
+    "Variantenart_Text": "Sockelhöhe",
+    "Variante": "100",
+    "Varianten_Text": "10 cm Sockelhöhe",
+    "id": 842
+  },
+  {
+    "Variantenart": 402,
+    "Variantenart_Text": "Sockelhöhe",
+    "Variante": "125",
+    "Varianten_Text": "12,5 cm Sockelhöhe",
+    "id": 843
+  },
+  {
+    "Variantenart": 402,
+    "Variantenart_Text": "Sockelhöhe",
+    "Variante": "150",
+    "Varianten_Text": "15 cm Sockelhöhe",
+    "id": 844
+  },
+  {
+    "Variantenart": 402,
+    "Variantenart_Text": "Sockelhöhe",
+    "Variante": "175",
+    "Varianten_Text": "17,5 cm Sockelhöhe",
+    "id": 845
+  },
+  {
+    "Variantenart": 402,
+    "Variantenart_Text": "Sockelhöhe",
+    "Variante": "200",
+    "Varianten_Text": "20 cm Sockelhöhe",
+    "id": 846
+  },
+  {
+    "Variantenart": 402,
+    "Variantenart_Text": "Sockelhöhe",
+    "Variante": "50",
+    "Varianten_Text": "5 cm Sockelhöhe",
+    "id": 847
+  },
+  {
+    "Variantenart": 402,
+    "Variantenart_Text": "Sockelhöhe",
+    "Variante": "75",
+    "Varianten_Text": "7,5 cm Sockelhöhe",
+    "id": 848
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 849
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 850
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 851
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 852
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 853
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 854
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "L5",
+    "Varianten_Text": "UV-Lack hochglanz",
+    "id": 855
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "L6",
+    "Varianten_Text": "UV-Lack matt",
+    "id": 856
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 857
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "L8",
+    "Varianten_Text": "UV-Lack matt Struktur",
+    "id": 858
+  },
+  {
+    "Variantenart": 500,
+    "Variantenart_Text": "Regalausführung",
+    "Variante": "U1",
+    "Varianten_Text": "Umfeld Kunststoff",
+    "id": 859
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "03-L1",
+    "Varianten_Text": "KP03 Satinlack              N3",
+    "id": 991
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "03L1P",
+    "Varianten_Text": "KP03 Satinlack, Pore        N4",
+    "id": 992
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "06-L1",
+    "Varianten_Text": "KP06 Satinlack              N3",
+    "id": 993
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "06L1P",
+    "Varianten_Text": "KP06 Satinlack, Pore        N4",
+    "id": 994
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "07-L1",
+    "Varianten_Text": "KP07 Satinlack              N3",
+    "id": 995
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "07L1P",
+    "Varianten_Text": "KP07 Satinlack, Pore        N4",
+    "id": 996
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "25-F1",
+    "Varianten_Text": "KP25 Furnier/Holz           N5",
+    "id": 997
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "25-L1",
+    "Varianten_Text": "KP25 Satinlack              N3",
+    "id": 998
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "25-L4",
+    "Varianten_Text": "KP25 Hochglanzlack          N6",
+    "id": 999
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "25-L7",
+    "Varianten_Text": "KP25 Samtmatt-Lack          N4",
+    "id": 1000
+  },
+  {
+    "Variantenart": 502,
+    "Variantenart_Text": "Kranzprofil-Ausführung",
+    "Variante": "25L1P",
+    "Varianten_Text": "KP25 Satinlack, Pore        N4",
+    "id": 1001
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "03-L1",
+    "Varianten_Text": "LB03 Satinlack              N3",
+    "id": 1094
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "03L1P",
+    "Varianten_Text": "LB03 Satinlack, Pore        N4",
+    "id": 1095
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "06-L1",
+    "Varianten_Text": "LB06 Satinlack              N3",
+    "id": 1096
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "06L1P",
+    "Varianten_Text": "LB06 Satinlack, Pore        N4",
+    "id": 1097
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "07-L1",
+    "Varianten_Text": "LB07 Satinlack              N3",
+    "id": 1098
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "07L1P",
+    "Varianten_Text": "LB07 Satinlack, Pore        N4",
+    "id": 1099
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "25-F1",
+    "Varianten_Text": "LB25 Furnier/Holz           N5",
+    "id": 1100
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "25-L1",
+    "Varianten_Text": "LB25 Satinlack              N3",
+    "id": 1101
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "25-L4",
+    "Varianten_Text": "LB25 Hochglanzlack          N6",
+    "id": 1102
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "25-L7",
+    "Varianten_Text": "LB25 Samtmatt-Lack          N4",
+    "id": 1103
+  },
+  {
+    "Variantenart": 504,
+    "Variantenart_Text": "Lichtblenden-Ausführung",
+    "Variante": "25L1P",
+    "Varianten_Text": "LB25 Satinlack, Pore        N4",
+    "id": 1104
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 1197
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 1198
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 1199
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 1200
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 1201
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 1202
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "L5",
+    "Varianten_Text": "UV-Lack hochglanz",
+    "id": 1203
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "L6",
+    "Varianten_Text": "UV-Lack matt",
+    "id": 1204
+  },
+  {
+    "Variantenart": 506,
+    "Variantenart_Text": "Deckenblenden-Ausführung",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 1205
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 1324
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 1325
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 1326
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 1327
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 1328
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 1329
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "L5",
+    "Varianten_Text": "UV-Lack hochglanz",
+    "id": 1330
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "L6",
+    "Varianten_Text": "UV-Lack matt",
+    "id": 1331
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 1332
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "L8",
+    "Varianten_Text": "UV-Lack matt Struktur",
+    "id": 1333
+  },
+  {
+    "Variantenart": 510,
+    "Variantenart_Text": "Bodenausführung",
+    "Variante": "U1",
+    "Varianten_Text": "Umfeld Kunststoff",
+    "id": 1334
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "A3",
+    "Varianten_Text": "Polymerglas matt",
+    "id": 1491
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 1492
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 1493
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 1494
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 1495
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 1496
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 1497
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "L4",
+    "Varianten_Text": "Hochglanzlack",
+    "id": 1498
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "L5",
+    "Varianten_Text": "UV-Lack hochglanz",
+    "id": 1499
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "L6",
+    "Varianten_Text": "UV-Lack matt",
+    "id": 1500
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 1501
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "L8",
+    "Varianten_Text": "UV-Lack matt Struktur",
+    "id": 1502
+  },
+  {
+    "Variantenart": 520,
+    "Variantenart_Text": "Wangen/Bord-Ausführung",
+    "Variante": "U1",
+    "Varianten_Text": "Umfeld Kunststoff",
+    "id": 1503
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "A3",
+    "Varianten_Text": "Polymerglas matt",
+    "id": 1671
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "G3",
+    "Varianten_Text": "Glas matt",
+    "id": 1672
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "G4",
+    "Varianten_Text": "Glas glanz",
+    "id": 1673
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "GLAS",
+    "Varianten_Text": "Glas ESG",
+    "id": 1674
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 1675
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 1676
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 1677
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 1678
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 1679
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "L8",
+    "Varianten_Text": "UV-Lack matt Struktur",
+    "id": 1680
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "MM",
+    "Varianten_Text": "Melamin Motivdruck",
+    "id": 1681
+  },
+  {
+    "Variantenart": 550,
+    "Variantenart_Text": "Nischenausführung",
+    "Variante": "U1",
+    "Varianten_Text": "Umfeld Kunststoff",
+    "id": 1682
+  },
+  {
+    "Variantenart": 562,
+    "Variantenart_Text": "Pilasterausführung",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 1865
+  },
+  {
+    "Variantenart": 562,
+    "Variantenart_Text": "Pilasterausführung",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 1866
+  },
+  {
+    "Variantenart": 600,
+    "Variantenart_Text": "Arbeitsplatten-Ausführung",
+    "Variante": "A16DK",
+    "Varianten_Text": "A16DK Dickkante",
+    "id": 1923
+  },
+  {
+    "Variantenart": 600,
+    "Variantenart_Text": "Arbeitsplatten-Ausführung",
+    "Variante": "AP10",
+    "Varianten_Text": "AP10 Kante Doppel-Rundprofil",
+    "id": 1924
+  },
+  {
+    "Variantenart": 600,
+    "Variantenart_Text": "Arbeitsplatten-Ausführung",
+    "Variante": "AP20",
+    "Varianten_Text": "AP20 Dickkante",
+    "id": 1925
+  },
+  {
+    "Variantenart": 650,
+    "Variantenart_Text": "Wandabschlussleisten-Ausführ.",
+    "Variante": "WP3",
+    "Varianten_Text": "WP3 Arbeitsplattenfarben",
+    "id": 2002
+  },
+  {
+    "Variantenart": 650,
+    "Variantenart_Text": "Wandabschlussleisten-Ausführ.",
+    "Variante": "WP5",
+    "Varianten_Text": "WP5 Profil Alu",
+    "id": 2003
+  },
+  {
+    "Variantenart": 700,
+    "Variantenart_Text": "Schub-/Zugausführung",
+    "Variante": "CBC",
+    "Varianten_Text": "Vollauszug mit Metall Box-Cap",
+    "id": 2028
+  },
+  {
+    "Variantenart": 700,
+    "Variantenart_Text": "Schub-/Zugausführung",
+    "Variante": "CGL",
+    "Varianten_Text": "Vollauszug mit Glas-Boxside",
+    "id": 2029
+  },
+  {
+    "Variantenart": 700,
+    "Variantenart_Text": "Schub-/Zugausführung",
+    "Variante": "CRE",
+    "Varianten_Text": "Vollauszug mit Reling",
+    "id": 2030
+  },
+  {
+    "Variantenart": 753,
+    "Variantenart_Text": "Sockelform",
+    "Variante": "S",
+    "Varianten_Text": "Standard-Sockelblende",
+    "id": 2031
+  },
+  {
+    "Variantenart": 753,
+    "Variantenart_Text": "Sockelform",
+    "Variante": "SB",
+    "Varianten_Text": "Beleuchtung-Sockelblende",
+    "id": 2032
+  },
+  {
+    "Variantenart": 753,
+    "Variantenart_Text": "Sockelform",
+    "Variante": "SL",
+    "Varianten_Text": "Lamellen-Sockelblende",
+    "id": 2033
+  },
+  {
+    "Variantenart": 950,
+    "Variantenart_Text": "Schub-/Zug-Öffnungssystem",
+    "Variante": "MTO",
+    "Varianten_Text": "mit TIP-ON",
+    "id": 2034
+  },
+  {
+    "Variantenart": 950,
+    "Variantenart_Text": "Schub-/Zug-Öffnungssystem",
+    "Variante": "OTO",
+    "Varianten_Text": "ohne TIP-ON",
+    "id": 2035
+  },
+  {
+    "Variantenart": 952,
+    "Variantenart_Text": "Profilausführung",
+    "Variante": "M0",
+    "Varianten_Text": "Metall Alu",
+    "id": 2039
+  },
+  {
+    "Variantenart": 956,
+    "Variantenart_Text": "Einlegematte",
+    "Variante": "MECG",
+    "Varianten_Text": "mit Einlegematte carbongrau",
+    "id": 2040
+  },
+  {
+    "Variantenart": 956,
+    "Variantenart_Text": "Einlegematte",
+    "Variante": "OE",
+    "Varianten_Text": "ohne Einlegematte",
+    "id": 2041
+  },
+  {
+    "Variantenart": 962,
+    "Variantenart_Text": "Korpussystem",
+    "Variante": "KA16",
+    "Varianten_Text": "Korpus für Arbeitsplatte 1,6cm",
+    "id": 2042
+  },
+  {
+    "Variantenart": 962,
+    "Variantenart_Text": "Korpussystem",
+    "Variante": "KSTA",
+    "Varianten_Text": "Korpus Standard",
+    "id": 2043
+  },
+  {
+    "Variantenart": 976,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 2044
+  },
+  {
+    "Variantenart": 976,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 2045
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L090",
+    "Varianten_Text": "Kristallweiß satin",
+    "id": 2046
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L090P",
+    "Varianten_Text": "Kristallweiß satin, Pore",
+    "id": 2047
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L095",
+    "Varianten_Text": "Muschelweiß satin",
+    "id": 2048
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L095P",
+    "Varianten_Text": "Muschelweiß satin, Pore",
+    "id": 2049
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L100P",
+    "Varianten_Text": "Weiß satin, Pore",
+    "id": 2050
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L100S",
+    "Varianten_Text": "Weiß satin",
+    "id": 2051
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L120",
+    "Varianten_Text": "Kristallgrau satin",
+    "id": 2052
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L120P",
+    "Varianten_Text": "Kristallgrau satin, Pore",
+    "id": 2053
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L135P",
+    "Varianten_Text": "Magnolia satin, Pore",
+    "id": 2054
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L135S",
+    "Varianten_Text": "Magnolia satin",
+    "id": 2055
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L185",
+    "Varianten_Text": "Onyxschwarz satin",
+    "id": 2056
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L185P",
+    "Varianten_Text": "Onyxschwarz satin, Pore",
+    "id": 2057
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L190",
+    "Varianten_Text": "Lavaschwarz satin",
+    "id": 2058
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L190P",
+    "Varianten_Text": "Lavaschwarz satin, Pore",
+    "id": 2059
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L205",
+    "Varianten_Text": "Kieselgrau satin",
+    "id": 2060
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L205P",
+    "Varianten_Text": "Kieselgrau satin, Pore",
+    "id": 2061
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L210",
+    "Varianten_Text": "Sandgrau satin",
+    "id": 2062
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L210P",
+    "Varianten_Text": "Sandgrau satin, Pore",
+    "id": 2063
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L235",
+    "Varianten_Text": "Steingrau satin",
+    "id": 2064
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L235P",
+    "Varianten_Text": "Steingrau satin, Pore",
+    "id": 2065
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L260",
+    "Varianten_Text": "Terragrau satin",
+    "id": 2066
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L260P",
+    "Varianten_Text": "Terragrau satin, Pore",
+    "id": 2067
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L275",
+    "Varianten_Text": "Achatgrau satin",
+    "id": 2068
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L275P",
+    "Varianten_Text": "Achatgrau satin, Pore",
+    "id": 2069
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L285P",
+    "Varianten_Text": "Anthrazit satin, Pore",
+    "id": 2070
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L285S",
+    "Varianten_Text": "Anthrazit satin",
+    "id": 2071
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L290",
+    "Varianten_Text": "Indischrot satin",
+    "id": 2072
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L290P",
+    "Varianten_Text": "Indischrot satin, Pore",
+    "id": 2073
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L295",
+    "Varianten_Text": "Stahlblau satin",
+    "id": 2074
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L295P",
+    "Varianten_Text": "Stahlblau satin, Pore",
+    "id": 2075
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L305",
+    "Varianten_Text": "Herbstrot satin",
+    "id": 2076
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L305P",
+    "Varianten_Text": "Herbstrot satin, Pore",
+    "id": 2077
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L315",
+    "Varianten_Text": "Eukalyptusgrün satin",
+    "id": 2078
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L315P",
+    "Varianten_Text": "Eukalyptusgrün satin, Pore",
+    "id": 2079
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L320",
+    "Varianten_Text": "Orientrot satin",
+    "id": 2080
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L320P",
+    "Varianten_Text": "Orientrot satin, Pore",
+    "id": 2081
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L350",
+    "Varianten_Text": "Sandgelb satin",
+    "id": 2082
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L350P",
+    "Varianten_Text": "Sandgelb satin, Pore",
+    "id": 2083
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L360",
+    "Varianten_Text": "Blaugrau satin",
+    "id": 2084
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L360P",
+    "Varianten_Text": "Blaugrau satin, Pore",
+    "id": 2085
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L395",
+    "Varianten_Text": "Olivgelb satin",
+    "id": 2086
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L395P",
+    "Varianten_Text": "Olivgelb satin, Pore",
+    "id": 2087
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L425",
+    "Varianten_Text": "Kaschmirbraun satin",
+    "id": 2088
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L425P",
+    "Varianten_Text": "Kaschmirbraun satin, Pore",
+    "id": 2089
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L440",
+    "Varianten_Text": "Waldgrün satin",
+    "id": 2090
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L440P",
+    "Varianten_Text": "Waldgrün satin, Pore",
+    "id": 2091
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L455",
+    "Varianten_Text": "Curry satin",
+    "id": 2092
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L455P",
+    "Varianten_Text": "Curry satin, Pore",
+    "id": 2093
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L460",
+    "Varianten_Text": "Salbeigrün satin",
+    "id": 2094
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L460P",
+    "Varianten_Text": "Salbeigrün satin, Pore",
+    "id": 2095
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L495",
+    "Varianten_Text": "Havannabraun satin",
+    "id": 2096
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L495P",
+    "Varianten_Text": "Havannabraun satin, Pore",
+    "id": 2097
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L535",
+    "Varianten_Text": "Sepiabraun satin",
+    "id": 2098
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L535P",
+    "Varianten_Text": "Sepiabraun satin, Pore",
+    "id": 2099
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L550",
+    "Varianten_Text": "Tiefblau satin",
+    "id": 2100
+  },
+  {
+    "Variantenart": 977,
+    "Variantenart_Text": "Dunsthaube/KP-Auflageb.-Profil",
+    "Variante": "L550P",
+    "Varianten_Text": "Tiefblau satin, Pore",
+    "id": 2101
+  },
+  {
+    "Variantenart": 982,
+    "Variantenart_Text": "Systemregal-Ausführung",
+    "Variante": "M0",
+    "Varianten_Text": "Metall Alu",
+    "id": 2102
+  },
+  {
+    "Variantenart": 984,
+    "Variantenart_Text": "Schubkasten-Vorderstückausf.",
+    "Variante": "H1",
+    "Varianten_Text": "Massivholz",
+    "id": 2105
+  },
+  {
+    "Variantenart": 984,
+    "Variantenart_Text": "Schubkasten-Vorderstückausf.",
+    "Variante": "H1P",
+    "Varianten_Text": "Massivholz, Pore",
+    "id": 2106
+  },
+  {
+    "Variantenart": 984,
+    "Variantenart_Text": "Schubkasten-Vorderstückausf.",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 2107
+  },
+  {
+    "Variantenart": 984,
+    "Variantenart_Text": "Schubkasten-Vorderstückausf.",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 2108
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "A3",
+    "Varianten_Text": "Polymerglas matt",
+    "id": 2197
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "F1",
+    "Varianten_Text": "Furnier",
+    "id": 2198
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "K1",
+    "Varianten_Text": "Kunststoff",
+    "id": 2199
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "K2",
+    "Varianten_Text": "Kunststoff hochglanz",
+    "id": 2200
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "K6",
+    "Varianten_Text": "Kunststoff Synchronpore",
+    "id": 2201
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "L1",
+    "Varianten_Text": "Satinlack",
+    "id": 2202
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "L1P",
+    "Varianten_Text": "Satinlack, Pore",
+    "id": 2203
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "L5",
+    "Varianten_Text": "UV-Lack hochglanz",
+    "id": 2204
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "L6",
+    "Varianten_Text": "UV-Lack matt",
+    "id": 2205
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "L7",
+    "Varianten_Text": "Samtmatt-Lack",
+    "id": 2206
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "L8",
+    "Varianten_Text": "UV-Lack matt Struktur",
+    "id": 2207
+  },
+  {
+    "Variantenart": 988,
+    "Variantenart_Text": "Korpus-Blenden/Materialausf.",
+    "Variante": "U1",
+    "Varianten_Text": "Umfeld Kunststoff",
+    "id": 2208
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "S/S",
+    "Varianten_Text": "senkrecht/senkrecht",
+    "id": 2372
+  },
+  {
+    "Variantenart": 304,
+    "Variantenart_Text": "Grifflage",
+    "Variante": "WW",
+    "Varianten_Text": "waagerecht/doppelt waagerecht",
+    "id": 2373
+  },
+  {
+    "Variantenart": 850,
+    "Variantenart_Text": "Ausführung Spülen",
+    "Variante": "EDEL",
+    "Varianten_Text": "Edelstahl",
+    "id": 2378
+  },
+  {
+    "Variantenart": 803,
+    "Variantenart_Text": "Ausführung Backen/Kochen",
+    "Variante": "ED",
+    "Varianten_Text": "Edelstahl",
+    "id": 2385
+  },
+  {
+    "Variantenart": 803,
+    "Variantenart_Text": "Ausführung Backen/Kochen",
+    "Variante": "SW",
+    "Varianten_Text": "Schwarz",
+    "id": 2386
+  },
+  {
+    "Variantenart": 803,
+    "Variantenart_Text": "Ausführung Backen/Kochen",
+    "Variante": "WE",
+    "Varianten_Text": "Weiß",
+    "id": 2387
+  },
+  {
+    "Variantenart": 854,
+    "Variantenart_Text": "Ausführung Armaturen",
+    "Variante": "CH",
+    "Varianten_Text": "Chrom",
+    "id": 2392
+  },
+  {
+    "Variantenart": 800,
+    "Variantenart_Text": "Ausführ Elektroger. Kühl. Gefr",
+    "Variante": "WE",
+    "Varianten_Text": "Weiß",
+    "id": 2394
+  },
+  {
+    "Variantenart": 900,
+    "Variantenart_Text": "Ausführung Dunsthaube",
+    "Variante": "ED",
+    "Varianten_Text": "Edelstahl",
+    "id": 2397
+  },
+  {
+    "Variantenart": 900,
+    "Variantenart_Text": "Ausführung Dunsthaube",
+    "Variante": "EDGL",
+    "Varianten_Text": "Edelstahl/Glas",
+    "id": 2398
+  },
+  {
+    "Variantenart": 900,
+    "Variantenart_Text": "Ausführung Dunsthaube",
+    "Variante": "ME",
+    "Varianten_Text": "Metallic/Silbermetallic",
+    "id": 2399
+  },
+  {
+    "Variantenart": 850,
+    "Variantenart_Text": "Ausführung Spülen",
+    "Variante": "VERB",
+    "Varianten_Text": "Cristadur/Cristalite",
+    "id": 2408
+  },
+  {
+    "Variantenart": 620,
+    "Variantenart_Text": "Abdeckplatten-Ausführung",
+    "Variante": "ADP16",
+    "Varianten_Text": "Wangenboden als Abdeckplatte 1",
+    "id": 2409
+  },
+  {
+    "Variantenart": 620,
+    "Variantenart_Text": "Abdeckplatten-Ausführung",
+    "Variante": "ADP25",
+    "Varianten_Text": "Wangenboden als Abdeckplatte 2",
+    "id": 2410
+  },
+  {
+    "Variantenart": 620,
+    "Variantenart_Text": "Abdeckplatten-Ausführung",
+    "Variante": "ADP60",
+    "Varianten_Text": "Wangenboden als Abdeckplatte 6",
+    "id": 2411
+  },
+  {
+    "Variantenart": 854,
+    "Variantenart_Text": "Ausführung Armaturen",
+    "Variante": "ED",
+    "Varianten_Text": "Edelstahl",
+    "id": 2416
+  },
+  {
+    "Variantenart": 900,
+    "Variantenart_Text": "Ausführung Dunsthaube",
+    "Variante": "SW",
+    "Varianten_Text": "Schwarz",
+    "id": 2420
+  },
+  {
+    "Variantenart": 900,
+    "Variantenart_Text": "Ausführung Dunsthaube",
+    "Variante": "WE",
+    "Varianten_Text": "Weiß",
+    "id": 2421
+  },
+  {
+    "Variantenart": 803,
+    "Variantenart_Text": "Ausführung Backen/Kochen",
+    "Variante": "GU",
+    "Varianten_Text": "Grau",
+    "id": 2423
+  },
+  {
+    "Variantenart": 803,
+    "Variantenart_Text": "Ausführung Backen/Kochen",
+    "Variante": "EDSW",
+    "Varianten_Text": "Edelstahl/Schwarz",
+    "id": 2425
+  },
+  {
+    "Variantenart": 803,
+    "Variantenart_Text": "Ausführung Backen/Kochen",
+    "Variante": "EDWE",
+    "Varianten_Text": "Edelstahl/Weiss",
+    "id": 2426
+  },
+  {
+    "Variantenart": 854,
+    "Variantenart_Text": "Ausführung Armaturen",
+    "Variante": "SW",
+    "Varianten_Text": "Schwarz",
+    "id": 2430
+  },
+  {
+    "Variantenart": 850,
+    "Variantenart_Text": "Ausführung Spülen",
+    "Variante": "VEFR",
+    "Varianten_Text": "Fragranit",
+    "id": 2435
+  },
+  {
+    "Variantenart": 800,
+    "Variantenart_Text": "Ausführ Elektroger. Kühl. Gefr",
+    "Variante": "SW",
+    "Varianten_Text": "Schwarz",
+    "id": 2436
+  },
+  {
+    "Variantenart": 800,
+    "Variantenart_Text": "Ausführ Elektroger. Kühl. Gefr",
+    "Variante": "ED",
+    "Varianten_Text": "Edelstahl",
+    "id": 2437
+  }
+]
