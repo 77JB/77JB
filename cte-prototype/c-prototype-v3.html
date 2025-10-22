@@ -1,0 +1,3145 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <!-- PrimeNG and FontAwesome styles for UI components and icons -->
+  <script src="https://unpkg.com/@primeuix/themes/umd/aura.js"></script>
+  <script src="https://kit.fontawesome.com/4f6812186b.js" crossorigin="anonymous"></script>
+
+  <!-- Inter Webfont einbinden -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalogtextur Verwaltung - Version 3</title>
+  <link rel="stylesheet" href="../styles/c-prototype-v3.css" />
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+  <script src="https://cdn.babylonjs.com/loaders/babylon.glTF2FileLoader.js"></script>
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="app-header">
+      <div class="app-header-corner">
+        <div class="app-header-corner-items" style="display: flex; gap: 1px;">
+          <i class="fa-light fa-ellipsis-vertical" style="color: white; font-size: 1.275rem;"></i>
+          <i class="fa-light fa-ellipsis-vertical" style="color: white; font-size: 1.275rem;"></i>
+          <i class="fa-light fa-ellipsis-vertical" style="color: white; font-size: 1.275rem;"></i>
+        </div>
+      </div>
+      <img src="/assets/img/svg/carat-dataservices-logo.svg" class="app-header-logo" style="max-width: 200px;"
+        alt="CARAT Logo">
+      <button class="p-button p-button-icon-only p-button-secondary p-button-raised p-button-rounded" type="button">
+        <span class="fa-light fa-user p-button-icon"></span>
+      </button>
+    </div>
+
+    <div class="app-main">
+      <div class="app-toolbar">
+        <div class="p-toolbar p-component">
+          <button class="p-button p-button-icon-only p-button-text active" type="button">
+            <span class="fa-light fa-house p-button-icon"></span>
+          </button>
+          <button class="p-button p-button-icon-only p-button-text" type="button">
+            <span class="fa-light fa-server p-button-icon"></span>
+          </button>
+          <button class="p-button p-button-icon-only p-button-text" type="button">
+            <span class="fa-light fa-pencil p-button-icon"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="app-content">
+        <div class="cte-container">
+          <!-- Secondary Toolbar -->
+          <div class="p-toolbar p-component cte-toolbar-switch">
+            <div class="p-toolbar-group-start" style="gap: 1rem;">
+              <div class="p-selectbutton p-component">
+                <button class="p-togglebutton p-togglebutton-checked" type="button"
+                  onclick="toggleDataSource(this, 'katalogtexturen')">
+                  <span class="p-togglebutton-content">
+                    <span class="p-togglebutton-label">Katalogtexturen</span>
+                  </span>
+                </button>
+                <button class="p-togglebutton" type="button" onclick="toggleDataSource(this, 'dekorpool')">
+                  <span class="p-togglebutton-content">
+                    <span class="p-togglebutton-label">Dekor Pool</span>
+                  </span>
+                </button>
+              </div>
+              <button class="p-togglebutton cte-import-button" type="button" onclick="toggleImportButton(this)">
+                <span class="p-togglebutton-content">
+                  <span class="fa-light fa-plus p-togglebutton-icon p-togglebutton-icon-left"></span>
+                  <span class="p-togglebutton-label">Texturen hinzufügen</span>
+                </span>
+              </button>
+            </div>
+
+            <!-- Current Catalog Display -->
+            <div class="p-toolbar-center">
+              <h2 id="currentCatalogTitle" class="current-catalog-title">Noch kein Katalog ausgewählt</h2>
+            </div>
+
+            <!-- Filter & Catalog Search Toolbar -->
+            <div class="toolbar">
+              <div class="p-autocomplete p-component p-inputwrapper">
+                <input type="text" id="catalogSearch" class="p-inputtext p-component p-autocomplete-input"
+                  placeholder="Katalog suche" oninput="searchCatalog(this)" autocomplete="off">
+                <span class="p-autocomplete-dropdown">
+                  <i class="fa-light fa-search" aria-hidden="true"></i>
+                </span>
+              </div>
+              <!-- Catalog selection (two dropdowns, last edited/imported) -->
+              <select id="catalogSelectEdited" class="p-dropdown p-component">
+                <option value="all">Zuletzt bearbeitete Kataloge</option>
+                <option>Reddy 2026 8/26 72328728</option>
+                <option>Pocco 2026 2/26 2398298</option>
+                <option>AEG 2026 4/26 87872898</option>
+                <option>Schüller 2026 42/25 00686820</option>
+
+                <option>SieMatic 2026 1/26 87810023</option>
+              </select>
+              <select id="catalogSelectImported" class="p-dropdown p-component">
+                <option value="all">Zuletzt importierte Kataloge</option>
+                <option>Reddy 2026 12/26</option>
+                <option>Nobilia 2026 4/26 55292034</option>
+                <option>Elektrolux 2026 2/26 24084538</option>
+                <option>Leicht 2026 1/2026 312740567</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Tabs -->
+          <div class="p-tabs p-component cte-menu" data-pc-section="root">
+            <div class="p-tablist p-component" role="tablist" data-pc-section="tablist">
+              <button class="p-tab p-tab-active p-component" type="button" role="tab" aria-selected="true"
+                data-pc-section="tab" onclick="switchMainTab('material')">
+                <span class="p-tab-content" data-pc-section="tabcontent">Material</span>
+              </button>
+              <button class="p-tab p-component" type="button" role="tab" aria-selected="false" data-pc-section="tab"
+                onclick="switchMainTab('colors')">
+                <span class="p-tab-content" data-pc-section="tabcontent">Farben</span>
+              </button>
+              <button class="p-tab p-component" type="button" role="tab" aria-selected="false" data-pc-section="tab"
+                onclick="switchMainTab('finishes')">
+                <span class="p-tab-content" data-pc-section="tabcontent">Ausführungen</span>
+              </button>
+              <button class="p-tab p-component" type="button" role="tab" aria-selected="false" data-pc-section="tab"
+                onclick="switchMainTab('program')">
+                <span class="p-tab-content" data-pc-section="tabcontent">Programme</span>
+              </button>
+            </div>
+            <div class="p-tabpanels" data-pc-section="tabpanels">
+              <div class="p-tabpanel p-tabpanel-active" role="tabpanel" data-pc-section="tabpanel" id="material-panel">
+                <!-- Material content will be handled by existing table -->
+              </div>
+              <div class="p-tabpanel" role="tabpanel" data-pc-section="tabpanel" id="colors-panel"
+                style="display: none;">
+                <!-- Farben content will be handled by existing table -->
+              </div>
+              <div class="p-tabpanel" role="tabpanel" data-pc-section="tabpanel" id="program-panel"
+                style="display: none;">
+                <!-- Programme content will be handled by programme table -->
+              </div>
+              <div class="p-tabpanel" role="tabpanel" data-pc-section="tabpanel" id="finishes-panel"
+                style="display: none;">
+                <!-- Ausführungen content -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Toolbar -->
+          <div class="p-toolbar p-component cte-toolbar">
+            <div class="p-toolbar-start">
+              <!-- View Manager Menu -->
+              <div class="p-menubar p-component cte-toolbar-menu">
+                <button class="p-button p-button-text" title="Ansichten-Manager">
+                  <span class="fa-light fa-grid-2-plus p-button-icon view-manager-icon" aria-hidden="true"></span>
+                  <span class="p-button-label">Ansichten-Manager</span>
+                </button>
+                <button class="p-button p-button-icon-only p-button-text cte-active" title="Tabelle">
+                  <span class="fa-light fa-list p-button-icon" aria-hidden="true"></span>
+                </button>
+                <button class="p-button p-button-icon-only p-button-text" title="Grid">
+                  <span class="fa-light fa-grid-2 p-button-icon" aria-hidden="true"></span>
+                </button>
+                <button class="p-button p-button-icon-only p-button-text" title="Large Grid">
+                  <span class="fa-light fa-grid-2-plus p-button-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <!-- Additional Controls -->
+              <button class="p-button p-button-icon-only p-button-text" type="button" title="Vorschau">
+                <span class="fa-light fa-image p-button-icon" aria-hidden="true"></span>
+              </button>
+
+              <button class="p-button p-button-icon-only p-button-text" type="button" title="Ähnlichkeit">
+                <span class="fa-light fa-clone p-button-icon" aria-hidden="true"></span>
+              </button>
+
+              <button class="p-button p-button-icon-only p-button-text" title="Löschen">
+                <span class="fa-light fa-trash p-button-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <!-- Search between toolbar sections -->
+            <div class="p-toolbar-center">
+              <div class="p-fluid cte-search-wrapper">
+                <div class="p-autocomplete p-component p-inputwrapper cte-search">
+                  <input type="text" placeholder="Suchen" class="p-inputtext p-component" id="search"
+                    oninput="filterTable()" onkeydown="handleTableSearchKeydown(event)">
+                </div>
+                <div class="p-selectbutton p-component">
+                  <button class="p-togglebutton p-togglebutton-checked" type="button" onclick="toggleSearchMode(this)">
+                    <span class="p-togglebutton-content">
+                      <span class="p-togglebutton-label">UND</span>
+                    </span>
+                  </button>
+                  <button class="p-togglebutton" type="button" onclick="toggleSearchMode(this)">
+                    <span class="p-togglebutton-content">
+                      <span class="p-togglebutton-label">ODER</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-toolbar-end">
+              <button class="p-button p-button-text icon-category cte-toolbar-button" title="Kategorien"
+                onclick="openCategoryDialog(event)">
+                <span class="fa-light fa-list-dropdown p-button-icon" aria-hidden="true"></span>
+                <span class="p-button-label">Kategorien</span>
+              </button>
+              <button class="p-button p-button-text icon-filter cte-toolbar-button" title="Filter"
+                onclick="openFilterDialog(event)">
+                <span class="fa-light fa-filter-list p-button-icon" aria-hidden="true"></span>
+                <span class="p-button-label">Filter</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Splitter Layout -->
+          <div class="main-splitter">
+            <!-- Table Panel for Material and Colors -->
+            <div class="table-panel" id="material-table-panel"
+              style="display: flex; display: none; visibility: hidden;">
+              <div class="cte-wrapper-grid">
+                <div class="prototype-table">
+                  <div
+                    class="p-datatable p-component p-datatable-hoverable p-datatable-striped p-datatable-gridlines p-datatable-scrollable p-datatable-flex-scrollable"
+                    role="table" aria-label="Katalogtexturen Tabelle">
+                    <div class="p-datatable-table-container" style="overflow: auto;">
+                      <table class="p-datatable-table p-datatable-scrollable-table">
+                        <thead class="p-datatable-thead" style="position: sticky;" role="rowgroup">
+                          <tr class="card-table-header" role="row">
+                            <th class="card-table-header-cell p-datatable-frozen-column p-datatable-frozen-column-left"
+                              style="left: 0px;" role="columnheader" aria-label="Auswahl">
+                              <input type="checkbox" class="p-checkbox-input" aria-label="Alle auswählen">
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 5rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Vorschau</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 14rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Material Name</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Materialschlüssel</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 12rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Variantenarten</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Variantentyp</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Kategorie</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Status</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Farbsystem</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Glanzgrad</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 14rem;">
+                              <div>Original Name</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 14rem;">
+                              <div>Textur Beschreibung</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 12rem;">
+                              <div>Bezeichnung</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>PBR</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>32 Bit</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>8 Bit</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Breite</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Höhe</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Kachelbreite</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Kachelhöhe</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;">
+                              <div>Hinweis</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;">
+                              <div>Angelegt von</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;">
+                              <div>Geändert von</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Erstellt am</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Geändert am</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Metallisch</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column">
+                              <div>Vorläufig</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="p-datatable-tbody" id="textureTable" role="rowgroup">
+                          <!-- Table rows with real data from Varianten_Alle_Schüller25_1025.XLS -->
+                          <tr onclick="showDetailsFromItem(item1)" class="p-datatable-row" role="row" tabindex="0"
+                            aria-label="Polymerglas matt - Material A3">
+                            <td style="left: 0px;" role="cell">
+                              <input type="checkbox" class="p-checkbox-input" aria-label="Polymerglas matt auswählen">
+                            </td>
+                            <td role="cell">
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/E8E8E8/666666?text=Polymerglas+matt"
+                                alt="Vorschau von Polymerglas matt" />
+                            </td>
+                            <td role="cell">Polymerglas matt</td>
+                            <td role="cell">A3</td>
+                            <td class="variant-cell" role="cell">
+                              100, 520, 550, 988
+                            </td>
+                            <td role="cell">Ausführung</td>
+                            <td role="cell">
+                              <span class="category-tag">Glas</span>
+                            </td>
+                            <td role="cell">
+                              <span class="status ready" aria-label="Status: Freigegeben">Freigegeben</span>
+                            </td>
+                            <td></td>
+                            <td>2</td>
+                            <td>Polymerglas matt</td>
+                            <td>Frontausführung Polymerglas matt</td>
+                            <td>a3.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>2400</td>
+                            <td>800</td>
+                            <td>120</td>
+                            <td>120</td>
+                            <td>Schüller Variante</td>
+                            <td>System</td>
+                            <td>Import</td>
+                            <td>10.10.2025</td>
+                            <td>17.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item2)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input">
+                            </td>
+                            <td>
+                              <img class="preview-image" src="https://placehold.co/400x300/8B7355/FFFFFF?text=Furnier"
+                                alt="Vorschau" />
+                            </td>
+                            <td>Furnier</td>
+                            <td>F1</td>
+                            <td class="variant-cell">
+                              100, 206, 400, 500, 506, 510, 520, 988
+                            </td>
+                            <td>Ausführung</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td></td>
+                            <td>3</td>
+                            <td>Furnier</td>
+                            <td>Frontausführung Furnier</td>
+                            <td>f1.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>2600</td>
+                            <td>900</td>
+                            <td>150</td>
+                            <td>150</td>
+                            <td>Schüller Variante</td>
+                            <td>System</td>
+                            <td>Import</td>
+                            <td>10.10.2025</td>
+                            <td>17.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item3)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/A0826D/FFFFFF?text=Massivholz" alt="Vorschau" />
+                            </td>
+                            <td>Massivholz / Furnier</td>
+                            <td>F3</td>
+                            <td class="variant-cell">
+                              100
+                            </td>
+                            <td>Ausführung</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status review">In Prüfung</span>
+                            </td>
+                            <td></td>
+                            <td>3</td>
+                            <td>Massivholz / Furnier</td>
+                            <td>Frontausführung Massivholz / Furnier</td>
+                            <td>f3.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>3000</td>
+                            <td>1000</td>
+                            <td>200</td>
+                            <td>200</td>
+                            <td>Schüller Variante</td>
+                            <td>System</td>
+                            <td>Import</td>
+                            <td>10.10.2025</td>
+                            <td>17.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item4)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/D0D0D0/333333?text=Kunststoff" alt="Vorschau" />
+                            </td>
+                            <td>Kunststoff</td>
+                            <td>K1</td>
+                            <td class="variant-cell">
+                              100, 200, 206, 209, 400, 500, 506, 510, 520, 550, 988
+                            </td>
+                            <td>Ausführung</td>
+                            <td>
+                              <span class="category-tag">Füllungen</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td></td>
+                            <td>2</td>
+                            <td>Kunststoff</td>
+                            <td>Frontausführung Kunststoff</td>
+                            <td>k1.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>1200</td>
+                            <td>100</td>
+                            <td>60</td>
+                            <td>60</td>
+                            <td>Schüller Variante</td>
+                            <td>System</td>
+                            <td>Import</td>
+                            <td>10.10.2025</td>
+                            <td>17.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item127A)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Polymerglas lavaschwarz matt auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/2C2C2C/CCCCCC?text=Polymerglas+lavaschwarz+matt"
+                                alt="Vorschau von Polymerglas lavaschwarz matt" />
+                            </td>
+                            <td>Polymerglas lavaschwarz matt</td>
+                            <td>A192</td>
+                            <td class="variant-cell">
+                              101, 521, 551, 989
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Glas</span>
+                            </td>
+                            <td>
+                              <span class="status missing">Textur fehlt</span>
+                            </td>
+                            <td></td>
+                            <td>2</td>
+                            <td>Granit Schwarz</td>
+                            <td>Beschreibung für Granit Schwarz</td>
+                            <td>127a.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>2400</td>
+                            <td>1200</td>
+                            <td>120</td>
+                            <td>120</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 2</td>
+                            <td>10.08.2025</td>
+                            <td>13.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item128B)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche kristallweiß satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/F5F5F5/333333?text=Esche+kristallweiß"
+                                alt="Vorschau von Esche kristallweiß satin, Pore" />
+                            </td>
+                            <td>Esche kristallweiß satin, Pore</td>
+                            <td>F090P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status review">In Prüfung</span>
+                            </td>
+                            <td></td>
+                            <td>4</td>
+                            <td>Buche Natur</td>
+                            <td>Beschreibung für Buche Natur</td>
+                            <td>128b.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>1400</td>
+                            <td>1200</td>
+                            <td>60</td>
+                            <td>60</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 3</td>
+                            <td>22.09.2025</td>
+                            <td>03.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item129C)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche muschelweiß satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/F8F8F8/333333?text=Esche+muschelweiß"
+                                alt="Vorschau von Esche muschelweiß satin, Pore" />
+                            </td>
+                            <td>Esche muschelweiß satin, Pore</td>
+                            <td>F095P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td></td>
+                            <td>4</td>
+                            <td>Schiefer Grau</td>
+                            <td>Beschreibung für Schiefer Grau</td>
+                            <td>129c.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>2600</td>
+                            <td>600</td>
+                            <td>80</td>
+                            <td>80</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 4</td>
+                            <td>31.08.2025</td>
+                            <td>07.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item130D)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche weiß satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/FFFFFF/333333?text=Esche+weiß"
+                                alt="Vorschau von Esche weiß satin, Pore" />
+                            </td>
+                            <td>Esche weiß satin, Pore</td>
+                            <td>F100P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status missing">Noch keine Textur zugewiesen</span>
+                            </td>
+                            <td></td>
+                            <td>3</td>
+                            <td>Perl Weiß</td>
+                            <td>Beschreibung für Perl Weiß</td>
+                            <td>130d.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>1400</td>
+                            <td>600</td>
+                            <td>150</td>
+                            <td>150</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 5</td>
+                            <td>17.09.2025</td>
+                            <td>08.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item131E)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche kristallgrau satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/E0E0E0/333333?text=Esche+kristallgrau"
+                                alt="Vorschau von Esche kristallgrau satin, Pore" />
+                            </td>
+                            <td>Esche kristallgrau satin, Pore</td>
+                            <td>F120P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td></td>
+                            <td>3</td>
+                            <td>Anthrazit Matt</td>
+                            <td>Beschreibung für Anthrazit Matt</td>
+                            <td>131e.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>3050</td>
+                            <td>900</td>
+                            <td>120</td>
+                            <td>120</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 1</td>
+                            <td>24.09.2025</td>
+                            <td>11.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item132F)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche magnolia satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/F0EAE8/333333?text=Esche+magnolia"
+                                alt="Vorschau von Esche magnolia satin, Pore" />
+                            </td>
+                            <td>Esche magnolia satin, Pore</td>
+                            <td>F135P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holzfarben Lackiert</span>
+                            </td>
+                            <td>
+                              <span class="status editing">In Bearbeitung</span>
+                            </td>
+                            <td></td>
+                            <td>4</td>
+                            <td>Kupfer Antik</td>
+                            <td>Beschreibung für Kupfer Antik</td>
+                            <td>132f.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>2400</td>
+                            <td>2070</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 2</td>
+                            <td>28.07.2025</td>
+                            <td>05.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item133G)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche onyxschwarz satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/2C2C2C/CCCCCC?text=Esche+onyxschwarz"
+                                alt="Vorschau von Esche onyxschwarz satin, Pore" />
+                            </td>
+                            <td>Esche onyxschwarz satin, Pore</td>
+                            <td>F185P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td>Abet Laminati</td>
+                            <td>2</td>
+                            <td>Bronze Patina</td>
+                            <td>Beschreibung für Bronze Patina</td>
+                            <td>133g.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>2400</td>
+                            <td>800</td>
+                            <td>200</td>
+                            <td>200</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 3</td>
+                            <td>29.07.2025</td>
+                            <td>09.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item134H)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche lavaschwarz satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/2C2C2C/CCCCCC?text=Esche+lavaschwarz"
+                                alt="Vorschau von Esche lavaschwarz satin, Pore" />
+                            </td>
+                            <td>Esche lavaschwarz satin, Pore</td>
+                            <td>F190P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td></td>
+                            <td>2</td>
+                            <td>Kiefer Country</td>
+                            <td>Beschreibung für Kiefer Country</td>
+                            <td>134h.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>1200</td>
+                            <td>600</td>
+                            <td>200</td>
+                            <td>200</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 4</td>
+                            <td>23.07.2025</td>
+                            <td>06.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item135I)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche kieselgrau satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/808080/FFFFFF?text=Esche+kieselgrau"
+                                alt="Vorschau von Esche kieselgrau satin, Pore" />
+                            </td>
+                            <td>Esche kieselgrau satin, Pore</td>
+                            <td>F205P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td></td>
+                            <td>2</td>
+                            <td>Edelstahl Gebürstet</td>
+                            <td>Beschreibung für Edelstahl Gebürstet</td>
+                            <td>135i.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>1200</td>
+                            <td>900</td>
+                            <td>200</td>
+                            <td>200</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 5</td>
+                            <td>05.08.2025</td>
+                            <td>02.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+
+                          <tr onclick="showDetailsFromItem(item136J)" class="p-datatable-row">
+                            <td style="left: 0px;">
+                              <input type="checkbox" class="p-checkbox-input"
+                                aria-label="Esche sandgrau satin, Pore auswählen" onclick="event.stopPropagation()">
+                            </td>
+                            <td>
+                              <img class="preview-image"
+                                src="https://placehold.co/400x300/808080/FFFFFF?text=Esche+sandgrau"
+                                alt="Vorschau von Esche sandgrau satin, Pore" />
+                            </td>
+                            <td>Esche sandgrau satin, Pore</td>
+                            <td>F210P</td>
+                            <td class="variant-cell">
+                              101, 155
+                            </td>
+                            <td>Farbe</td>
+                            <td>
+                              <span class="category-tag">Holz</span>
+                            </td>
+                            <td>
+                              <span class="status ready">Freigegeben</span>
+                            </td>
+                            <td>Wilsonart</td>
+                            <td>2</td>
+                            <td>Perl Weiß</td>
+                            <td>Beschreibung für Perl Weiß</td>
+                            <td>136j.jpg</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>Ja</td>
+                            <td>3050</td>
+                            <td>800</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td></td>
+                            <td>System</td>
+                            <td>Bearbeiter 1</td>
+                            <td>28.08.2025</td>
+                            <td>03.10.2025</td>
+                            <td>Nein</td>
+                            <td>Nein</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table Panel for Programme -->
+            <div class="table-panel" id="programme-table-panel" style="display: none; visibility: hidden;">
+              <div class="cte-wrapper-grid">
+                <div class="prototype-table">
+                  <div
+                    class="p-datatable p-component p-datatable-hoverable p-datatable-striped p-datatable-gridlines p-datatable-scrollable p-datatable-flex-scrollable"
+                    role="table" aria-label="Programme Tabelle">
+                    <div class="p-datatable-table-container" style="overflow: auto;">
+                      <table class="p-datatable-table p-datatable-scrollable-table">
+                        <thead class="p-datatable-thead" style="position: sticky;" role="rowgroup">
+                          <tr class="card-table-header" role="row">
+                            <th class="card-table-header-cell p-datatable-frozen-column p-datatable-frozen-column-left"
+                              style="left: 0px;" role="columnheader" aria-label="Auswahl">
+                              <input type="checkbox" class="p-checkbox-input" aria-label="Alle auswählen">
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 6rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Serie</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Kürzel</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 14rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Bezeichnung</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Farbe</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Front Ausf.</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Fronttiefe</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Preisfeld</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 9rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Preisgruppe</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>VarFamNr</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 10rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Lieferzeit (Tage)</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="p-datatable-tbody" id="programmeTable" role="rowgroup">
+                          <!-- Programme rows will be dynamically populated -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table Panel for Ausführungen -->
+            <div class="table-panel" id="ausfuehrungen-table-panel" style="display: none; visibility: hidden;">
+              <div class="cte-wrapper-grid">
+                <div class="prototype-table">
+                  <div
+                    class="p-datatable p-component p-datatable-hoverable p-datatable-striped p-datatable-gridlines p-datatable-scrollable p-datatable-flex-scrollable"
+                    role="table" aria-label="Ausführungen Tabelle">
+                    <div class="p-datatable-table-container" style="overflow: auto;">
+                      <table class="p-datatable-table p-datatable-scrollable-table">
+                        <thead class="p-datatable-thead" style="position: sticky;" role="rowgroup">
+                          <tr class="card-table-header" role="row">
+                            <th class="card-table-header-cell p-datatable-frozen-column p-datatable-frozen-column-left"
+                              style="left: 0px;" role="columnheader" aria-label="Auswahl">
+                              <input type="checkbox" class="p-checkbox-input" aria-label="Alle auswählen">
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Variantenart</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 14rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Variantenart Text</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 8rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Variante</div>
+                            </th>
+                            <th
+                              class="p-datatable-reorderable-column card-table-header-cell p-datatable-sortable-column"
+                              style="min-width: 18rem;" role="columnheader" aria-sort="none" tabindex="0">
+                              <div>Varianten Text</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="p-datatable-tbody" id="ausfuehrungenTable" role="rowgroup">
+                          <!-- Ausführungen rows will be dynamically populated -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Color Panel with Häcker Colors -->
+            <div class="table-panel" id="color-panel" style="display: none; visibility: hidden;">
+              <div class="scroll-wrapper">
+                <div class="section">
+                  <div class="color-grid" id="colorGrid">
+
+                    <div class="color-card" data-material="1">
+                      <div class="color-swatch" style="background-color: #dfe0dd;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 1</div>
+                        <div class="hex-code">#dfe0dd</div>
+                        <div class="rgb-code">RGB(223, 224, 221)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="6">
+                      <div class="color-swatch" style="background-color: #f8f5ef;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 6</div>
+                        <div class="hex-code">#f8f5ef</div>
+                        <div class="rgb-code">RGB(248, 245, 239)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="14">
+                      <div class="color-swatch" style="background-color: #141613;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 14</div>
+                        <div class="hex-code">#141613</div>
+                        <div class="rgb-code">RGB(20, 22, 19)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="53">
+                      <div class="color-swatch" style="background-color: #39120f;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 53</div>
+                        <div class="hex-code">#39120f</div>
+                        <div class="rgb-code">RGB(57, 18, 15)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="80">
+                      <div class="color-swatch" style="background-color: #f6f5f2;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 80</div>
+                        <div class="hex-code">#f6f5f2</div>
+                        <div class="rgb-code">RGB(246, 245, 242)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="81">
+                      <div class="color-swatch" style="background-color: #cdc2b6;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 81</div>
+                        <div class="hex-code">#cdc2b6</div>
+                        <div class="rgb-code">RGB(205, 194, 182)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="120">
+                      <div class="color-swatch" style="background-color: #f6f5f2;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 120</div>
+                        <div class="hex-code">#f6f5f2</div>
+                        <div class="rgb-code">RGB(246, 245, 242)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="133">
+                      <div class="color-swatch" style="background-color: #5e6d6a;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 133</div>
+                        <div class="hex-code">#5e6d6a</div>
+                        <div class="rgb-code">RGB(94, 109, 106)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="134">
+                      <div class="color-swatch" style="background-color: #22151c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 134</div>
+                        <div class="hex-code">#22151c</div>
+                        <div class="rgb-code">RGB(34, 21, 28)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="137">
+                      <div class="color-swatch" style="background-color: #f2e2c8;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 137</div>
+                        <div class="hex-code">#f2e2c8</div>
+                        <div class="rgb-code">RGB(242, 226, 200)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="138">
+                      <div class="color-swatch" style="background-color: #909893;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 138</div>
+                        <div class="hex-code">#909893</div>
+                        <div class="rgb-code">RGB(144, 152, 147)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="139">
+                      <div class="color-swatch" style="background-color: #313836;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 139</div>
+                        <div class="hex-code">#313836</div>
+                        <div class="rgb-code">RGB(49, 56, 54)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="140">
+                      <div class="color-swatch" style="background-color: #626260;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 140</div>
+                        <div class="hex-code">#626260</div>
+                        <div class="rgb-code">RGB(98, 98, 96)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="141">
+                      <div class="color-swatch" style="background-color: #fcfcfb;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 141</div>
+                        <div class="hex-code">#fcfcfb</div>
+                        <div class="rgb-code">RGB(252, 252, 251)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="145">
+                      <div class="color-swatch" style="background-color: #3c5064;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 145</div>
+                        <div class="hex-code">#3c5064</div>
+                        <div class="rgb-code">RGB(60, 80, 100)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="147">
+                      <div class="color-swatch" style="background-color: #7f8d74;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 147</div>
+                        <div class="hex-code">#7f8d74</div>
+                        <div class="rgb-code">RGB(127, 141, 116)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="148">
+                      <div class="color-swatch" style="background-color: #8c8c8c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 148</div>
+                        <div class="hex-code">#8c8c8c</div>
+                        <div class="rgb-code">RGB(140, 140, 140)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="150">
+                      <div class="color-swatch" style="background-color: #41464b;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 150</div>
+                        <div class="hex-code">#41464b</div>
+                        <div class="rgb-code">RGB(65, 70, 75)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="152">
+                      <div class="color-swatch" style="background-color: #e5e2dd;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 152</div>
+                        <div class="hex-code">#e5e2dd</div>
+                        <div class="rgb-code">RGB(229, 226, 221)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="153">
+                      <div class="color-swatch" style="background-color: #a59487;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 153</div>
+                        <div class="hex-code">#a59487</div>
+                        <div class="rgb-code">RGB(165, 148, 135)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="154">
+                      <div class="color-swatch" style="background-color: #542f36;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 154</div>
+                        <div class="hex-code">#542f36</div>
+                        <div class="rgb-code">RGB(84, 47, 54)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="155">
+                      <div class="color-swatch" style="background-color: #5e6d6a;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 155</div>
+                        <div class="hex-code">#5e6d6a</div>
+                        <div class="rgb-code">RGB(94, 109, 106)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="156">
+                      <div class="color-swatch" style="background-color: #22151c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 156</div>
+                        <div class="hex-code">#22151c</div>
+                        <div class="rgb-code">RGB(34, 21, 28)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="157">
+                      <div class="color-swatch" style="background-color: #f2e2c8;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 157</div>
+                        <div class="hex-code">#f2e2c8</div>
+                        <div class="rgb-code">RGB(242, 226, 200)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="158">
+                      <div class="color-swatch" style="background-color: #909893;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 158</div>
+                        <div class="hex-code">#909893</div>
+                        <div class="rgb-code">RGB(144, 152, 147)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="159">
+                      <div class="color-swatch" style="background-color: #313836;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 159</div>
+                        <div class="hex-code">#313836</div>
+                        <div class="rgb-code">RGB(49, 56, 54)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="160">
+                      <div class="color-swatch" style="background-color: #626260;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 160</div>
+                        <div class="hex-code">#626260</div>
+                        <div class="rgb-code">RGB(98, 98, 96)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="161">
+                      <div class="color-swatch" style="background-color: #fcfcfb;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 161</div>
+                        <div class="hex-code">#fcfcfb</div>
+                        <div class="rgb-code">RGB(252, 252, 251)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="162">
+                      <div class="color-swatch" style="background-color: #3c5064;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 162</div>
+                        <div class="hex-code">#3c5064</div>
+                        <div class="rgb-code">RGB(60, 80, 100)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="164">
+                      <div class="color-swatch" style="background-color: #8c8c8c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 164</div>
+                        <div class="hex-code">#8c8c8c</div>
+                        <div class="rgb-code">RGB(140, 140, 140)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="167">
+                      <div class="color-swatch" style="background-color: #e5e2dd;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 167</div>
+                        <div class="hex-code">#e5e2dd</div>
+                        <div class="rgb-code">RGB(229, 226, 221)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="168">
+                      <div class="color-swatch" style="background-color: #a59487;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 168</div>
+                        <div class="hex-code">#a59487</div>
+                        <div class="rgb-code">RGB(165, 148, 135)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="169">
+                      <div class="color-swatch" style="background-color: #f2e2c8;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 169</div>
+                        <div class="hex-code">#f2e2c8</div>
+                        <div class="rgb-code">RGB(242, 226, 200)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="170">
+                      <div class="color-swatch" style="background-color: #f2e2c8;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 170</div>
+                        <div class="hex-code">#f2e2c8</div>
+                        <div class="rgb-code">RGB(242, 226, 200)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="171">
+                      <div class="color-swatch" style="background-color: #313836;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 171</div>
+                        <div class="hex-code">#313836</div>
+                        <div class="rgb-code">RGB(49, 56, 54)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="172">
+                      <div class="color-swatch" style="background-color: #313836;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 172</div>
+                        <div class="hex-code">#313836</div>
+                        <div class="rgb-code">RGB(49, 56, 54)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="173">
+                      <div class="color-swatch" style="background-color: #fcfcfb;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 173</div>
+                        <div class="hex-code">#fcfcfb</div>
+                        <div class="rgb-code">RGB(252, 252, 251)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="174">
+                      <div class="color-swatch" style="background-color: #fcfcfb;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 174</div>
+                        <div class="hex-code">#fcfcfb</div>
+                        <div class="rgb-code">RGB(252, 252, 251)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="175">
+                      <div class="color-swatch" style="background-color: #8c8c8c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 175</div>
+                        <div class="hex-code">#8c8c8c</div>
+                        <div class="rgb-code">RGB(140, 140, 140)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="176">
+                      <div class="color-swatch" style="background-color: #8c8c8c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 176</div>
+                        <div class="hex-code">#8c8c8c</div>
+                        <div class="rgb-code">RGB(140, 140, 140)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="177">
+                      <div class="color-swatch" style="background-color: #e5e2dd;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 177</div>
+                        <div class="hex-code">#e5e2dd</div>
+                        <div class="rgb-code">RGB(229, 226, 221)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="178">
+                      <div class="color-swatch" style="background-color: #e5e2dd;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 178</div>
+                        <div class="hex-code">#e5e2dd</div>
+                        <div class="rgb-code">RGB(229, 226, 221)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="179">
+                      <div class="color-swatch" style="background-color: #666060;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 179</div>
+                        <div class="hex-code">#666060</div>
+                        <div class="rgb-code">RGB(102, 96, 96)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="180">
+                      <div class="color-swatch" style="background-color: #b0aa9c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 180</div>
+                        <div class="hex-code">#b0aa9c</div>
+                        <div class="rgb-code">RGB(176, 170, 156)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="181">
+                      <div class="color-swatch" style="background-color: #252525;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 181</div>
+                        <div class="hex-code">#252525</div>
+                        <div class="rgb-code">RGB(37, 37, 37)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="182">
+                      <div class="color-swatch" style="background-color: #35382b;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 182</div>
+                        <div class="hex-code">#35382b</div>
+                        <div class="rgb-code">RGB(53, 56, 43)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="184">
+                      <div class="color-swatch" style="background-color: #626260;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 184</div>
+                        <div class="hex-code">#626260</div>
+                        <div class="rgb-code">RGB(98, 98, 96)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="185">
+                      <div class="color-swatch" style="background-color: #654641;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 185</div>
+                        <div class="hex-code">#654641</div>
+                        <div class="rgb-code">RGB(101, 70, 65)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="192">
+                      <div class="color-swatch" style="background-color: #666c7c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 192</div>
+                        <div class="hex-code">#666c7c</div>
+                        <div class="rgb-code">RGB(102, 108, 124)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="193">
+                      <div class="color-swatch" style="background-color: #2b323c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 193</div>
+                        <div class="hex-code">#2b323c</div>
+                        <div class="rgb-code">RGB(43, 50, 60)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="194">
+                      <div class="color-swatch" style="background-color: #61544c;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 194</div>
+                        <div class="hex-code">#61544c</div>
+                        <div class="rgb-code">RGB(97, 84, 76)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="195">
+                      <div class="color-swatch" style="background-color: #a49987;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 195</div>
+                        <div class="hex-code">#a49987</div>
+                        <div class="rgb-code">RGB(164, 153, 135)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="196">
+                      <div class="color-swatch" style="background-color: #8e8a7e;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 196</div>
+                        <div class="hex-code">#8e8a7e</div>
+                        <div class="rgb-code">RGB(142, 138, 126)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="197">
+                      <div class="color-swatch" style="background-color: #d1ccc6;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 197</div>
+                        <div class="hex-code">#d1ccc6</div>
+                        <div class="rgb-code">RGB(209, 204, 198)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="201">
+                      <div class="color-swatch" style="background-color: #51574d;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 201</div>
+                        <div class="hex-code">#51574d</div>
+                        <div class="rgb-code">RGB(81, 87, 77)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="202">
+                      <div class="color-swatch" style="background-color: #b5b2a9;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 202</div>
+                        <div class="hex-code">#b5b2a9</div>
+                        <div class="rgb-code">RGB(181, 178, 169)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="213">
+                      <div class="color-swatch" style="background-color: #f8f5ef;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 213</div>
+                        <div class="hex-code">#f8f5ef</div>
+                        <div class="rgb-code">RGB(248, 245, 239)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="237">
+                      <div class="color-swatch" style="background-color: #f8f5ef;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 237</div>
+                        <div class="hex-code">#f8f5ef</div>
+                        <div class="rgb-code">RGB(248, 245, 239)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="240">
+                      <div class="color-swatch" style="background-color: #f6f5f2;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 240</div>
+                        <div class="hex-code">#f6f5f2</div>
+                        <div class="rgb-code">RGB(246, 245, 242)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="252">
+                      <div class="color-swatch" style="background-color: #141613;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 252</div>
+                        <div class="hex-code">#141613</div>
+                        <div class="rgb-code">RGB(20, 22, 19)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="253">
+                      <div class="color-swatch" style="background-color: #cdc2b6;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 253</div>
+                        <div class="hex-code">#cdc2b6</div>
+                        <div class="rgb-code">RGB(205, 194, 182)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="281">
+                      <div class="color-swatch" style="background-color: #141613;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 281</div>
+                        <div class="hex-code">#141613</div>
+                        <div class="rgb-code">RGB(20, 22, 19)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="284">
+                      <div class="color-swatch" style="background-color: #141613;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 284</div>
+                        <div class="hex-code">#141613</div>
+                        <div class="rgb-code">RGB(20, 22, 19)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="285">
+                      <div class="color-swatch" style="background-color: #141613;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 285</div>
+                        <div class="hex-code">#141613</div>
+                        <div class="rgb-code">RGB(20, 22, 19)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="290">
+                      <div class="color-swatch" style="background-color: #f8f5ef;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 290</div>
+                        <div class="hex-code">#f8f5ef</div>
+                        <div class="rgb-code">RGB(248, 245, 239)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="292">
+                      <div class="color-swatch" style="background-color: #f8f5ef;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 292</div>
+                        <div class="hex-code">#f8f5ef</div>
+                        <div class="rgb-code">RGB(248, 245, 239)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="300">
+                      <div class="color-swatch" style="background-color: #141614;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 300</div>
+                        <div class="hex-code">#141614</div>
+                        <div class="rgb-code">RGB(20, 22, 20)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="301">
+                      <div class="color-swatch" style="background-color: #c2d3cd;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 301</div>
+                        <div class="hex-code">#c2d3cd</div>
+                        <div class="rgb-code">RGB(194, 211, 205)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="302">
+                      <div class="color-swatch" style="background-color: #c3c8cb;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 302</div>
+                        <div class="hex-code">#c3c8cb</div>
+                        <div class="rgb-code">RGB(195, 200, 203)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="303">
+                      <div class="color-swatch" style="background-color: #d2d3d5;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 303</div>
+                        <div class="hex-code">#d2d3d5</div>
+                        <div class="rgb-code">RGB(210, 211, 213)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="315">
+                      <div class="color-swatch" style="background-color: #99a9b9;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 315</div>
+                        <div class="hex-code">#99a9b9</div>
+                        <div class="rgb-code">RGB(153, 169, 185)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="345">
+                      <div class="color-swatch" style="background-color: #cdc2b6;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 345</div>
+                        <div class="hex-code">#cdc2b6</div>
+                        <div class="rgb-code">RGB(205, 194, 182)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="350">
+                      <div class="color-swatch" style="background-color: #dfe0dd;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 350</div>
+                        <div class="hex-code">#dfe0dd</div>
+                        <div class="rgb-code">RGB(223, 224, 221)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="367">
+                      <div class="color-swatch" style="background-color: #cdc2b6;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 367</div>
+                        <div class="hex-code">#cdc2b6</div>
+                        <div class="rgb-code">RGB(205, 194, 182)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="370">
+                      <div class="color-swatch" style="background-color: #f8f5ef;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 370</div>
+                        <div class="hex-code">#f8f5ef</div>
+                        <div class="rgb-code">RGB(248, 245, 239)</div>
+                      </div>
+                    </div>
+
+                    <div class="color-card" data-material="634">
+                      <div class="color-swatch" style="background-color: #bac0c7;">
+                      </div>
+                      <div class="color-info">
+                        <div class="material-no">Material Farbe 634</div>
+                        <div class="hex-code">#bac0c7</div>
+                        <div class="rgb-code">RGB(186, 192, 199)</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="section">
+                  <h3>Features mit Farbvarianten</h3>
+                  <div class="feature-list">
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Frontfarbe</div>
+                          <div class="variant-count">73 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 101</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #141613;"></div>
+                          <span>Schwarz matt</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8c8c8c;"></div>
+                          <span>Perlgrau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #666c7c;"></div>
+                          <span>Balticblau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit matt</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Esche-kristallweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #cdc2b6;"></div>
+                          <span>Kaschmir</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+63 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Front Kombination</div>
+                          <div class="variant-count">289 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 105</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #666c7c;"></div>
+                          <span>SCALA Balticblau Melaminharzbeschichtung</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>SMART Kristallweiß Polymerglas</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #b5b2a9;"></div>
+                          <span>UNO Steinbeige Melaminharzbeschichtung Feinstruktur</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #b5b2a9;"></div>
+                          <span>TOP BRILLANT Steinbeige Direktlack glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #61544c;"></div>
+                          <span>VEGAS Braun metallic Lacklaminat</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #2b323c;"></div>
+                          <span>VEGAS Blau metallic Lacklaminat</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8e8a7e;"></div>
+                          <span>VEGAS Grün metallic Lacklaminat</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #a49987;"></div>
+                          <span>VEGAS Champagner metallic Lacklaminat</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #909893;"></div>
+                          <span>SCALA Eukalyptus Melaminharzbeschichtung</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #b5b2a9;"></div>
+                          <span>TOP SOFT Steinbeige Direktlack matt</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+279 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Glasausführung</div>
+                          <div class="variant-count">3 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 150</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8c8c8c;"></div>
+                          <span>Akzentglastür Perlgrau Mattglas</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Akzentglastür Graphit Mattglas</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Akzentglastür Weiß Mattglas</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Glas Farbe</div>
+                          <div class="variant-count">3 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 151</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #d2d3d5;"></div>
+                          <span>Klarglas</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #c3c8cb;"></div>
+                          <span>Mattglas</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Mattglas, Rand crema-magnolie</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Glasrahmenfarbe</div>
+                          <div class="variant-count">7 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 155</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Weiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #141613;"></div>
+                          <span>Schwarz</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Jalousiefarbe</div>
+                          <div class="variant-count">21 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 161</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Glas Weiß SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f6f5f2;"></div>
+                          <span>Glas Polarweiß SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Glas Satin SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #666060;"></div>
+                          <span>Steingrau metallic 50mm Rolllade</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #cdc2b6;"></div>
+                          <span>Glas Kaschmir SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8c8c8c;"></div>
+                          <span>Glas Perlgrau SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #141613;"></div>
+                          <span>Glas Schwarz SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #252525;"></div>
+                          <span>Carbon metallic 50mm Rolllade</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Glas Crema-magnolie SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Glas Crema-magnolie satiniert SlightLift</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+11 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Korpus Kombination (KK/KI/KA)</div>
+                          <div class="variant-count">11 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 201</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Weiß / Kristallweiß / Weiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f6f5f2;"></div>
+                          <span>Polarweiß / Kristallweiß / Polarweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß / Kristallweiß / Kristallweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8c8c8c;"></div>
+                          <span>Perlgrau / Kristallweiß / Perlgrau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #d1ccc6;"></div>
+                          <span>Sandgrau / Kristallweiß / Sandgrau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Satin / Kristallweiß / Satin</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Crema-magnolie / Kristallweiß / Crema-magnolie</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #141613;"></div>
+                          <span>Schwarz / Kristallweiß / Schwarz</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #cdc2b6;"></div>
+                          <span>Kaschmir / Kristallweiß / Kaschmir</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit / Kristallweiß / Graphit</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+1 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Korpusaußenfarbe</div>
+                          <div class="variant-count">12 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 202</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Satin</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Crema-magnolie</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #141613;"></div>
+                          <span>Schwarz</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #cdc2b6;"></div>
+                          <span>Kaschmir</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Weiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #b5b2a9;"></div>
+                          <span>Steinbeige</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f6f5f2;"></div>
+                          <span>Polarweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8c8c8c;"></div>
+                          <span>Perlgrau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+2 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Korpusinnenfarbe</div>
+                          <div class="variant-count">1 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 203</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Korpuskanten Farbe (KK)</div>
+                          <div class="variant-count">11 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 205</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>satin</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>crema-magnolie</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #141613;"></div>
+                          <span>schwarz</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #cdc2b6;"></div>
+                          <span>kaschmir</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>graphit</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Weiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #b5b2a9;"></div>
+                          <span>Steinbeige</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f6f5f2;"></div>
+                          <span>polarweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>kristallweiß</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8c8c8c;"></div>
+                          <span>Perlgrau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+1 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Sichtseitenfarbe</div>
+                          <div class="variant-count">66 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 207</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #7f8d74;"></div>
+                          <span>Esche Repro. Pastellgrün lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #41464b;"></div>
+                          <span>Esche Repro. Samtblau lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Esche Repro Greige lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f6f5f2;"></div>
+                          <span>Polarweiß einseitig glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß einseitig glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Weiß einseitig glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Crema-magnolie einseitig glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Satin einseitig glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #8c8c8c;"></div>
+                          <span>Perlgrau einseitig glänzend</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+56 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Korpusinnenfarbe Dekor+</div>
+                          <div class="variant-count">30 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 208</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #7f8d74;"></div>
+                          <span>Esche Repro. Pastellgrün lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #41464b;"></div>
+                          <span>Esche Repro. Samtblau lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Esche Repro Greige lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Satin</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Esche Repro. Satin lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Crema-magnolie</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #141613;"></div>
+                          <span>Schwarz</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f2e2c8;"></div>
+                          <span>Esche Repro. Crema-magnolie lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #d1ccc6;"></div>
+                          <span>Esche Repro. Sandgrau lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #cdc2b6;"></div>
+                          <span>Kaschmir</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+20 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Grifffarbe</div>
+                          <div class="variant-count">18 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 301</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Metall Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Bronzefarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #bac0c7;"></div>
+                          <span>Edelstahlfarben</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+8 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Sockelfarbe</div>
+                          <div class="variant-count">116 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 401</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #666c7c;"></div>
+                          <span>Balticblau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #7f8d74;"></div>
+                          <span>Esche Repro. Pastellgrün lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #41464b;"></div>
+                          <span>Esche Repro. Samtblau lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #626260;"></div>
+                          <span>Esche Repro Greige lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Satin</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f6f5f2;"></div>
+                          <span>Polarweiß UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Esche Repro. Satin lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Weiß UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+106 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="feature-item">
+                      <div class="feature-header">
+                        <div>
+                          <div class="feature-title">Regalfarbe</div>
+                          <div class="variant-count">122 Varianten</div>
+                        </div>
+                        <div class="feature-number">Feature 501</div>
+                      </div>
+                      <div class="variants-preview">
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #666c7c;"></div>
+                          <span>Balticblau</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #7f8d74;"></div>
+                          <span>Esche Repro. Pastellgrün lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #41464b;"></div>
+                          <span>Esche Repro. Samtblau lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #626260;"></div>
+                          <span>Esche Repro Greige lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #313836;"></div>
+                          <span>Graphit UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Satin</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f6f5f2;"></div>
+                          <span>Polarweiß UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #e5e2dd;"></div>
+                          <span>Esche Repro. Satin lackiert</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #fcfcfb;"></div>
+                          <span>Kristallweiß UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <div class="variant-color-dot" style="background-color: #f8f5ef;"></div>
+                          <span>Weiß UV Hochglanzlack (PS)</span>
+                        </div>
+
+                        <div class="variant-chip">
+                          <span>+112 weitere...</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- Splitter Handle -->
+            <div class="splitter-handle" id="splitter-handle"></div>
+
+            <!-- Details Panel -->
+            <div class="details-panel" id="detail-pane">
+              <div class="details-header">
+                <h3 id="detail-title" class="status-dot">Details</h3>
+                <button onclick="closeDetailPane()" title="Schließen" class="p-button p-button-icon-only p-button-text">
+                  <i class="fa-light fa-xmark"></i>
+                </button>
+              </div>
+
+              <div class="details-content">
+                <div class="preview-tabs">
+                  <button class="preview-tab-btn active" onclick="togglePreview('preview')" id="tab-btn-preview">
+                    Textur
+                  </button>
+                  <button class="preview-tab-btn" onclick="togglePreview('threeD')" id="tab-btn-threeD">
+                    3D Vorschau
+                  </button>
+                </div>
+
+                <div id="preview" class="preview-content active">
+                  <img class="preview-img" id="detail-preview-img" src="" alt="Preview" />
+                </div>
+
+                <div id="threeD" class="preview-content">
+                  <div class="preview-wrapper">
+                    <canvas id="babylon-canvas"></canvas>
+                    <select id="animation-select" class="catalog-select">
+                      <option value="">-- Animation wählen --</option>
+                    </select>
+                    <div class="icon-bar">
+                      <button title="Einzelschrank" onclick="loadGLBModel('Ecklift.glb')">
+                        <i class="fa-solid fa-cube"></i>
+                      </button>
+                      <button title="Oberschrank" onclick="loadGLBModel('Kühlschrank.glb')">
+                        <i class="fa-solid fa-cubes"></i>
+                      </button>
+                      <button title="Küchenzeile" onclick="loadGLBModel('Geschirrspüler.glb')">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tabs">
+                  <button class="tab-btn active" onclick="switchTab(event,'eigenschaften')" id="tab-btn-eigenschaften">
+                    Eigenschaften
+                  </button>
+                  <button class="tab-btn" onclick="switchTab(event,'varianten')" id="tab-btn-varianten">
+                    Varianten
+                  </button>
+                  <button class="tab-btn" onclick="switchTab(event,'texturdateien')" id="tab-btn-texturdateien">
+                    Textur Dateien
+                  </button>
+                </div>
+
+                <div id="eigenschaften" class="tab-content active">
+                  <fieldset>
+                    <label>Name</label>
+                    <span id="detail-name"></span>
+                    <label>Dekor Name</label>
+                    <span id="detail-dekorname"></span>
+                    <label>Materialschlüssel</label>
+                    <span id="detail-matid"></span>
+                    <label>Variantentyp</label>
+                    <span id="detail-variantentyp"></span>
+                    <label>Varianten</label>
+                    <span id="detail-varianten" style="display: flex; flex-wrap: wrap; gap: 6px"></span>
+                    <label>Dekor Breite</label>
+                    <span id="detail-breite"></span>
+                    <label>Dekor Höhe</label>
+                    <span id="detail-hoehe"></span>
+                    <label>Dekor Bildformat</label>
+                    <span id="detail-bildformat"></span>
+                    <label>Kachelbreite</label>
+                    <input id="tile_width" type="number" />
+                    <label>Kachelhöhe</label>
+                    <input id="tile_height" type="number" />
+                    <label>Ausrichtung Maserung</label>
+                    <span style="display: flex; gap: 8px; align-items: center">
+                      <select id="maserung">
+                        <option>waagerecht</option>
+                        <option>senkrecht</option>
+                        <option>diagonal</option>
+                      </select>
+                      <input id="deg" type="number" placeholder="in Grad" style="min-width: 120px" />
+                    </span>
+                    <label>Glanzgrad</label>
+                    <span style="display: flex; gap: 8px; align-items: center">
+                      <select id="glanzgrad">
+                        <option>Matt</option>
+                        <option>Hochglanz</option>
+                        <option>Lackiert</option>
+                        <option>Glänzend</option>
+                        <option>Funiert</option>
+                        <option>Glas</option>
+                        <option>Kunstoff matt</option>
+                        <option>Kunstoff glänzend</option>
+                        <option>Holz</option>
+                        <option>01</option>
+                        <option>02</option>
+                        <option>03</option>
+                        <option>04</option>
+                        <option>05</option>
+                        <option>06</option>
+                        <option>07</option>
+                        <option>08</option>
+                        <option>09</option>
+                        <option>10</option>
+                      </select>
+                      <input id="percent" type="number" min="0" max="100" placeholder="In Prozent"
+                        style="min-width: 120px" />
+                    </span>
+                    <label>Metallisch</label>
+                    <input id="metall" type="checkbox" style="width: 20px; height: auto" />
+                  </fieldset>
+                </div>
+
+                <div id="varianten" class="tab-content">
+                  <div id="variant-buttons"></div>
+                  <div class="variant-container" id="variant-container"></div>
+                </div>
+
+                <div id="texturdateien" class="tab-content">
+                  <div id="variantfile-buttons" style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem;">
+                  </div>
+                  <h4 class="h-toggle" onclick="toggleFileList()">
+                    <i class="fa fa-chevron-right" id="fileListToggleIcon"></i>
+                    <span id="fileListToggleLabel">Katalog Textur Dateien (Dekor Pool)</span>
+                  </h4>
+                  <div class="file-list" id="fileListWrapper" style="display: none"></div>
+                  <h4>Varianten Dateien</h4>
+                  <div class="variant-file-container" id="variant-file-container"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Panel -->
+        <div class="p-panel p-component cte-footer-panel">
+          <div class="p-panel-content-container">
+            <div class="p-panel-content">
+              <div class="cte-footer">
+                <div class="cte-footer-dummy"></div>
+                <div class="cte-footer-count-container stats">
+                  <div class="cte-footer-count stat">
+                    <div class="stat-label">Ausgewählte</div>
+                    <div class="stat-value">0</div>
+                  </div>
+                  <div class="cte-footer-count stat">
+                    <div class="stat-label">Gefiltert</div>
+                    <div class="stat-value">4</div>
+                  </div>
+                  <div class="cte-footer-count stat">
+                    <div class="stat-label">Insgesamt</div>
+                    <div class="stat-value">4</div>
+                  </div>
+                </div>
+                <div class="cte-footer-info" id="cte-footer-info" style="display: none;">
+                  <div class="stats">
+                    <div class="stat">
+                      <div class="stat-value">76</div>
+                      <div class="stat-label">Materialfarben</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">37</div>
+                      <div class="stat-label">Features</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">1956</div>
+                      <div class="stat-label">Varianten</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cte-footer-mass">
+                  <div class="p-toggleswitch p-component">
+                    <input type="checkbox" id="massSwitchId" class="p-toggleswitch-input">
+                    <span class="p-toggleswitch-slider">
+                      <div class="p-toggleswitch-handle"></div>
+                    </span>
+                  </div>
+                  <label for="massSwitchId" class="cte-footer-mass-text">Massenbearbeitung</label>
+                </div>
+                <!--button class="p-togglebutton" type="button">
+                <span class="p-togglebutton-content">
+                  <span class="p-togglebutton-label">Schlagwortverwaltung</span>
+                </span>
+              </button-->
+                <!--button class="p-togglebutton" type="button">
+                <span class="p-togglebutton-content">
+                  <span class="p-togglebutton-label">KI Training & Analyse</span>
+                </span>
+              </button-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Dialog -->
+    <div id="filterDialog" class="dialog-overlay" style="display: none;">
+      <div class="dialog-container" id="filterDialogContainer">
+        <div class="dialog-header" id="filterDialogHeader">
+          <span class="dialog-title">Material filtern</span>
+          <button class="dialog-close-btn" onclick="closeFilterDialog()">
+            <i class="fa-light fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-content">
+          <!-- Farbgitter -->
+          <div class="filter-color-grid">
+            <div class="filter-color-item" data-color="rgb(177, 2, 46)" style="background-color: rgb(177, 2, 46);">
+            </div>
+            <div class="filter-color-item" data-color="rgb(253, 226, 53)" style="background-color: rgb(253, 226, 53);">
+            </div>
+            <div class="filter-color-item" data-color="rgb(122, 201, 44)" style="background-color: rgb(122, 201, 44);">
+            </div>
+            <div class="filter-color-item" data-color="rgb(2, 202, 202)" style="background-color: rgb(2, 202, 202);">
+            </div>
+            <div class="filter-color-item" data-color="rgb(0, 112, 204)" style="background-color: rgb(0, 112, 204);">
+            </div>
+            <div class="filter-color-item" data-color="rgb(175, 2, 202)" style="background-color: rgb(175, 2, 202);">
+            </div>
+            <div class="filter-color-item" data-color="rgb(0, 0, 0)" style="background-color: rgb(0, 0, 0);"></div>
+            <div class="filter-color-item" data-color="rgb(255, 255, 255)"
+              style="background-color: rgb(255, 255, 255); border: 1px solid #ddd;"></div>
+            <div class="filter-color-item" data-color="rgb(128, 128, 128)"
+              style="background-color: rgb(128, 128, 128);"></div>
+          </div>
+
+          <!-- Filter-Optionen -->
+          <ul class="filter-menu">
+            <li class="filter-delimiter">
+              <label class="filter-item">
+                <span>Neuste zuerst <span class="filter-item-detail"></span></span>
+                <input type="checkbox" value="newest">
+                <div class="filter-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="filter-item">
+                <span>Dunkel <span class="filter-item-detail"></span></span>
+                <input type="checkbox" value="dark">
+                <div class="filter-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="filter-item">
+                <span>Hell <span class="filter-item-detail"></span></span>
+                <input type="checkbox" value="light">
+                <div class="filter-checkbox"></div>
+              </label>
+            </li>
+            <li class="filter-delimiter">
+              <label class="filter-item">
+                <span>Normal <span class="filter-item-detail"></span></span>
+                <input type="checkbox" value="normal">
+                <div class="filter-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="filter-item">
+                <span>Ohne Wiederholungsmuster <span class="filter-item-detail"></span></span>
+                <input type="checkbox" value="no-pattern">
+                <div class="filter-checkbox"></div>
+              </label>
+            </li>
+            <li class="filter-delimiter">
+              <label class="filter-item">
+                <span>Groß <span class="filter-item-detail">( > 1200 mm )</span></span>
+                <input type="checkbox" value="large">
+                <div class="filter-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="filter-item">
+                <span>Mittel <span class="filter-item-detail">( 600 mm bis 1200 mm )</span></span>
+                <input type="checkbox" value="medium">
+                <div class="filter-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="filter-item">
+                <span>Klein <span class="filter-item-detail">( < 600 mm )</span></span>
+                  <input type="checkbox" value="small">
+                  <div class="filter-checkbox"></div>
+              </label>
+            </li>
+          </ul>
+
+          <div class="dialog-reset-container">
+            <div class="dialog-footer-buttons">
+              <button class="dialog-edit-btn" onclick="editFilters()">
+                Filter bearbeiten
+              </button>
+              <button class="dialog-reset-btn" onclick="resetFilters()">
+                Filter zurücksetzen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kategorien Dialog -->
+    <div id="categoryDialog" class="dialog-overlay" style="display: none;">
+      <div class="dialog-container" id="categoryDialogContainer">
+        <div class="dialog-header" id="dialogHeader">
+          <span class="dialog-title">Kategorien filtern</span>
+          <button class="dialog-close-btn" onclick="closeCategoryDialog()">
+            <i class="fa-light fa-xmark"></i>
+          </button>
+        </div>
+        <div class="dialog-content">
+          <ul class="category-menu">
+            <li>
+              <label class="category-item">
+                <span>Holz</span>
+                <input type="checkbox" value="Holz">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Holzfarben Lackiert</span>
+                <input type="checkbox" value="Holzfarben Lackiert">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Füllungen</span>
+                <input type="checkbox" value="Füllungen">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Granit/Marmor</span>
+                <input type="checkbox" value="Granit/Marmor">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Polsterstoff</span>
+                <input type="checkbox" value="Polsterstoff">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Metall</span>
+                <input type="checkbox" value="Metall">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Glas</span>
+                <input type="checkbox" value="Glas">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Wand und Bodendekore</span>
+                <input type="checkbox" value="Wand und Bodendekore">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Fliesen</span>
+                <input type="checkbox" value="Fliesen">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Corian</span>
+                <input type="checkbox" value="Corian">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+            <li>
+              <label class="category-item">
+                <span>Nicht zugeordnet</span>
+                <input type="checkbox" value="Nicht zugeordnet">
+                <div class="category-checkbox"></div>
+              </label>
+            </li>
+          </ul>
+          <div class="dialog-reset-container">
+            <div class="dialog-footer-buttons">
+              <button class="dialog-edit-btn" onclick="editCategories()">
+                Kategorien bearbeiten
+              </button>
+              <button class="dialog-reset-btn" onclick="resetCategoryFilters()">
+                Filter zurücksetzen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../scripts/c-prototype-v3.js"></script>
+    <script src="../scripts/enhanced-datatable.js"></script>
+    <script>
+      // Click auf Farbkarte kopiert Hex-Code
+      const colorCards = document.querySelectorAll('.color-card');
+
+      colorCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const hexCode = card.querySelector('.hex-code').textContent;
+          navigator.clipboard.writeText(hexCode);
+
+          // Visuelles Feedback
+          const originalBg = card.style.background;
+          card.style.background = '#e8f5e9';
+          setTimeout(() => {
+            card.style.background = originalBg;
+          }, 300);
+        });
+      });
+    </script>
+</body>
+
+</html>

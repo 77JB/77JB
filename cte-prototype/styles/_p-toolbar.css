@@ -1,0 +1,509 @@
+@import '_p-colors.css';
+
+/* =============================================================================
+   TOOLBAR SYSTEM - Extracted from c-prototype-v3.css
+   Maintains original CSS cascade order and specificity
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   1. BASE TOOLBAR STYLES
+   ----------------------------------------------------------------------------- */
+
+/* Basic toolbar (legacy) */
+.toolbar {
+  align-items: center;
+  background: var(--p-toolbar-background, #ffffff);
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+.toolbar .p-inputgroup {
+  max-width: 100%;
+  width: 400px;
+}
+
+.toolbar .p-dropdown.p-component {
+  max-width: 100%;
+  width: 300px;
+}
+
+.subline {
+  color: var(--p-text-color, #292929);
+  font-size: 0.9em;
+  padding: 0.5rem 1rem;
+}
+
+/* -----------------------------------------------------------------------------
+   2. CTE-TOOLBAR-SWITCH VARIANT - Most specific styles first
+   ----------------------------------------------------------------------------- */
+
+/* Filter & Catalog Toolbar Styling */
+.cte-toolbar-switch .toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  padding: 0;
+}
+
+.cte-toolbar-switch .toolbar .p-autocomplete {
+  width: 180px;
+  min-width: 180px;
+  max-width: 20vw;
+  position: relative;
+  transition: width 0.3s ease;
+}
+
+.cte-toolbar-switch .toolbar .p-autocomplete:focus-within {
+  width: 20vw;
+}
+
+.cte-toolbar-switch .toolbar .p-autocomplete-input {
+  border: 1px solid var(--p-surface-border, #dee2e6);
+  background: var(--p-surface-0, white);
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: var(--p-border-radius, 6px);
+  transition: all 0.3s ease;
+}
+
+.cte-toolbar-switch .toolbar .p-autocomplete-dropdown {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  background: transparent;
+  border: none;
+  color: var(--p-text-muted-color, #6c757d);
+  cursor: pointer;
+  border-radius: 0 var(--p-border-radius, 6px) var(--p-border-radius, 6px) 0;
+}
+
+.cte-toolbar-switch .toolbar .p-autocomplete:hover .p-autocomplete-input {
+  border-color: var(--p-primary-500);
+}
+
+.cte-toolbar-switch .toolbar .p-dropdown {
+  min-width: 200px;
+  border: 1px solid var(--p-surface-border, #dee2e6);
+  background: var(--p-surface-0, white);
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--p-text-color, #292929);
+  border-radius: var(--p-border-radius, 6px);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+}
+
+.cte-toolbar-switch .toolbar .p-dropdown:hover {
+  border-color: var(--p-primary-500);
+  cursor: pointer;
+}
+
+/* Current Catalog Title Styling */
+.cte-toolbar-switch .current-catalog-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--p-text-color, #292929);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+/* SelectButton styling for cte-toolbar-switch toolbar-group-start */
+.cte-toolbar-switch .p-toolbar-group-start .p-selectbutton .p-togglebutton {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  color: var(--p-text-color, #292929);
+}
+
+/* "Texturen hinzufügen" Button Basis-Styling */
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  color: var(--p-text-color, #292929);
+  background: transparent;
+}
+
+/* Icon Basis-Styling */
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button .p-togglebutton-icon {
+  transition: color 0.2s ease;
+  color: var(--p-text-color, #292929);
+}
+
+.cte-toolbar-switch .p-toolbar-group-start .p-selectbutton .p-togglebutton-checked {
+  background: var(--p-primary-800);
+  color: #ffffff;
+  border-color: var(--p-primary-800);
+}
+
+.cte-toolbar-switch .p-toolbar-group-start .p-selectbutton .p-togglebutton-checked:hover {
+  background: #004085;
+  color: #ffffff;
+  border-color: #004085;
+  cursor: pointer;
+}
+
+.cte-toolbar-switch .p-toolbar-group-start .p-selectbutton .p-togglebutton:hover {
+  background: var(--p-surface-0, #ffffff);
+  color: var(--p-text-color, #292929);
+  cursor: pointer;
+}
+
+/* "Texturen hinzufügen" Button Hover-Effekt */
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button:hover {
+  background: var(--p-surface-0, #ffffff) !important;
+  color: var(--p-text-color, #292929) !important;
+  cursor: pointer;
+  transition: all 0.2s ease !important;
+  border: 1px solid var(--p-surface-border, #dee2e6) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Icon im Hover-State einfärben */
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button:hover .p-togglebutton-icon {
+  color: var(--p-text-color, #292929) !important;
+}
+
+/* Aktiver Status für "Texturen hinzufügen" Button */
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button.p-togglebutton-checked,
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button.active {
+  background: var(--p-primary-800, #0056b3) !important;
+  color: #ffffff !important;
+  border-color: var(--p-primary-800, #0056b3) !important;
+}
+
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button.p-togglebutton-checked:hover,
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button.active:hover {
+  background: #004085 !important;
+  color: #ffffff !important;
+  border-color: #004085 !important;
+  cursor: pointer;
+}
+
+/* Icon im aktiven State einfärben */
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button.p-togglebutton-checked .p-togglebutton-icon,
+.cte-toolbar-switch .p-toolbar-group-start .cte-import-button.active .p-togglebutton-icon {
+  color: #ffffff !important;
+}
+
+/* Keep search + selectbutton inline in center for cte-toolbar-switch */
+.cte-toolbar-switch .p-toolbar-center .p-fluid {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--p-surface-0, #ffffff);
+  border: 1px solid var(--p-surface-border, #dee2e6);
+  border-radius: var(--p-border-radius, 6px);
+  padding: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Search width constraints for cte-toolbar-switch */
+.cte-toolbar-switch .cte-search {
+  min-width: 240px;
+  width: 320px;
+  max-width: 25vw;
+  max-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Remove border from search input when inside p-fluid container in cte-toolbar-switch */
+.cte-toolbar-switch .p-toolbar-center .p-fluid .cte-search input {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  width: 100%;
+  flex: 1;
+}
+
+.cte-toolbar-switch .p-toolbar-center .p-fluid .cte-search input:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Adjust selectbutton styling within the grouped container in cte-toolbar-switch */
+.cte-toolbar-switch .p-toolbar-center .p-fluid .p-selectbutton {
+  border: none;
+  background: transparent;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.cte-toolbar-switch .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton {
+  border: 1px solid var(--p-surface-border, #dee2e6);
+  background: var(--p-surface-100, #f8f9fa);
+  height: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cte-toolbar-switch .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton:hover {
+  background: var(--p-surface-200, #e9ecef);
+  border-color: var(--p-surface-300, #dee2e6);
+  cursor: pointer;
+}
+
+.cte-toolbar-switch .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton-checked {
+  background: var(--p-primary-800);
+  color: #ffffff;
+  border-color: var(--p-primary-800);
+}
+
+.cte-toolbar-switch .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton-checked:hover {
+  background: #004085;
+  border-color: #004085;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------------------------------
+   3. GENERIC TOOLBAR ALIGNMENT RULES (applies to all variants)
+   ----------------------------------------------------------------------------- */
+
+/* Toolbar sections alignment - Generische Regel für alle p-toolbar Varianten */
+.p-toolbar > *,
+.cte-toolbar .p-toolbar > *,
+.cte-toolbar-switch .p-toolbar > * {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Start und End Bereiche */
+.p-toolbar > :first-child,
+.p-toolbar > :last-child,
+.cte-toolbar .p-toolbar > :first-child,
+.cte-toolbar .p-toolbar > :last-child,
+.cte-toolbar-switch .p-toolbar > :first-child,
+.cte-toolbar-switch .p-toolbar > :last-child {
+  flex: 0 0 auto;
+}
+
+/* Center Bereich */
+.p-toolbar > :nth-child(2),
+.cte-toolbar .p-toolbar > :nth-child(2),
+.cte-toolbar-switch .p-toolbar > :nth-child(2) {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+/* -----------------------------------------------------------------------------
+   4. CTE-TOOLBAR VARIANT (Standard variant)
+   ----------------------------------------------------------------------------- */
+
+/* Ensure the PrimeNG toolbar inside is a single-row flex container */
+.cte-toolbar .p-toolbar.p-component {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: nowrap;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+/* Keep search + selectbutton inline in center */
+.cte-toolbar .p-toolbar-center .p-fluid {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--p-surface-0, #ffffff);
+  border: 1px solid var(--p-surface-200, #ddd);
+  border-radius: var(--p-border-radius, 1rem);
+  padding: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.025);
+}
+
+/* Search width constraints */
+.cte-toolbar .cte-search {
+  min-width: 240px;
+  width: 420px;
+  max-width: 20vw;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Remove border from search input when inside p-fluid container */
+.cte-toolbar .p-toolbar-center .p-fluid .cte-search input {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  width: 100%;
+  flex: 1;
+}
+
+.cte-toolbar .p-toolbar-center .p-fluid .cte-search input:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Adjust selectbutton styling within the grouped container */
+.cte-toolbar .p-toolbar-center .p-fluid .p-selectbutton {
+  border: none;
+  background: transparent;
+}
+
+.cte-toolbar .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton {
+  border: 1px solid var(--p-surface-border, #dee2e6);
+  border-radius: var(--p-border-radius, 1rem);
+  background: var(--p-surface-100, #f8f9fa);
+  font-size: 0.75rem;
+}
+
+.cte-toolbar .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton-checked {
+  background: var(--p-primary-800);
+  color: #ffffff;
+  border-color: var(--p-primary-800);
+}
+
+.cte-toolbar .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton-checked:hover {
+  background: #004085;
+  color: #ffffff;
+  border-color: #004085;
+  cursor: pointer;
+}
+
+/* Make common inputs/buttons align nicely */
+.cte-toolbar .p-inputgroup,
+.cte-toolbar .p-dropdown.p-component,
+.cte-toolbar .p-inputtext,
+.cte-toolbar .p-button {
+  margin: 0;
+}
+
+/* Allow search group to grow but prevent overflow */
+.cte-toolbar .p-inputgroup {
+  flex: 1 1 320px;
+  min-width: 200px;
+  max-width: 600px;
+}
+
+/* Prevent wrapping of toolbar items */
+.cte-toolbar > * {
+  flex-shrink: 0;
+}
+
+/* Compact view menu spacing */
+.cte-toolbar .cte-toolbar-menu {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+/* Toolbar width constraint */
+.cte-toolbar {
+  max-width: 100vw;
+  overflow-x: auto;
+  box-sizing: border-box;
+  /* Hide scrollbar for all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  /* Improve horizontal scrolling */
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  cursor: grab;
+}
+
+.cte-toolbar:active {
+  cursor: grabbing;
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.cte-toolbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* -----------------------------------------------------------------------------
+   5. TOOLBAR GROUP STYLES (applies to all toolbar variants)
+   ----------------------------------------------------------------------------- */
+
+/* Toolbar group spacing */
+.p-toolbar-group-start {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+/* Ensure SelectButton and ToggleButton have same height */
+.p-toolbar-group-start .p-selectbutton {
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.p-toolbar-group-start .p-selectbutton .p-togglebutton {
+  height: 2rem;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  color: var(--p-text-color, #292929);
+}
+
+.p-toolbar-group-start .p-selectbutton .p-togglebutton-checked {
+  background: var(--p-primary-800);
+  color: #ffffff;
+  border-color: var(--p-primary-800);
+}
+
+.p-toolbar-group-start .p-selectbutton .p-togglebutton-checked:hover {
+  background: #004085;
+  color: #ffffff;
+  border-color: #004085;
+  cursor: pointer;
+}
+
+.p-toolbar-group-start .p-selectbutton .p-togglebutton:hover {
+  background: var(--p-surface-0, #ffffff);
+  color: var(--p-text-color, #292929);
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------------------------------
+   6. FOOTER PANEL STYLES (related to toolbar system)
+   ----------------------------------------------------------------------------- */
+
+.cte-footer-panel .p-panel-content {
+  padding: 0.5rem;
+  background: var(--p-surface-50, #f9f9f9);
+  border-top: 1px solid var(--p-surface-200, #ddd);
+}
+
+.cte-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cte-footer-count-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.cte-footer-count {
+  font-weight: 500;
+}
+
+.cte-footer-mass {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

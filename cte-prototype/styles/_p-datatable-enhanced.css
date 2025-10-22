@@ -1,0 +1,345 @@
+@import url('./_p-datatable.css');
+
+/* Enhanced PrimeNG DataTable Styles for better UX */
+
+/* Striped Rows disabled for cleaner, less distracting view */
+.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background: transparent;
+}
+
+/* Enhanced Row Hover Effect */
+/* Enhanced hover effects */
+.p-datatable-hoverable .p-datatable-tbody > tr:not(.p-datatable-row-selected):hover {
+  background: var(--p-datatable-row-hover-background);
+  color: var(--p-datatable-row-hover-color);
+}
+
+/* Row height definition */
+.p-datatable-tbody > tr {
+  height: 2rem;
+}
+
+/* Improved Row Selection */
+.p-datatable-row-selected {
+  background: var(--p-datatable-row-selected-background) !important;
+  color: var(--p-datatable-row-selected-color);
+  box-shadow: inset 3px 0 0 var(--p-primary-500);
+}
+
+.p-datatable-row-selected:hover {
+  background: color-mix(in srgb, var(--p-datatable-row-selected-background), var(--p-primary-100) 20%) !important;
+}
+
+/* Better Header Styles */
+.p-datatable-thead > tr > th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--p-datatable-header-cell-background);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--p-datatable-header-cell-border-color);
+  font-weight: var(--p-datatable-column-title-font-weight, 500);
+  font-size: 0.875rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.p-datatable-thead > tr > th:hover {
+  background: var(--p-datatable-header-cell-hover-background);
+  transition: background-color 0.2s ease;
+}
+
+/* Sortable Column Indicators */
+.p-datatable-thead > tr > th.p-datatable-sortable-column {
+  cursor: pointer;
+  user-select: none;
+}
+
+.p-datatable-thead > tr > th.p-datatable-sortable-column:hover {
+  background: var(--p-datatable-header-cell-hover-background);
+}
+
+/* Sort Icons Enhancement */
+.p-sortable-column-icon {
+  margin-left: 0.5rem;
+  color: var(--p-datatable-sort-icon-color);
+  transition: color 0.2s ease;
+}
+
+.p-datatable-sortable-column:hover .p-sortable-column-icon {
+  color: var(--p-datatable-sort-icon-hover-color);
+}
+
+/* Cell Padding and Alignment */
+.p-datatable-tbody > tr > td {
+  vertical-align: middle;
+  border-bottom: 1px solid var(--p-datatable-body-cell-border-color);
+  transition: all 0.2s ease;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  height: 2rem;
+}
+
+.p-datatable-tbody > tr:last-child > td {
+  border-bottom: none;
+}
+
+/* Column Width Specifications */
+/* Varianten Column - wider and no text wrapping */
+.p-datatable-thead > tr > th:nth-child(4),
+.p-datatable-tbody > tr > td:nth-child(4) {
+  min-width: 5vw;
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status Column - wider and no text wrapping */
+.p-datatable-tbody > tr > td.variant-cell {
+  min-width: 34vw;
+  white-space: wrap;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* PBR Column - Boolean Ja/Nein values */
+.p-datatable-thead > tr > th:nth-child(11),
+.p-datatable-tbody > tr > td:nth-child(11) {
+  min-width: 80px;
+  width: 80px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Improved Checkbox Styles */
+.p-checkbox-input {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.p-checkbox-input:hover {
+  border-color: var(--p-primary-500);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--p-primary-500), transparent 80%);
+}
+
+/* Loading State */
+.p-datatable-loading {
+  position: relative;
+}
+
+.p-datatable-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: color-mix(in srgb, var(--p-surface-0), transparent 20%);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* Empty State Message */
+.p-datatable-emptymessage > td {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--p-text-muted-color);
+  font-style: italic;
+}
+
+/* Frozen Columns Enhancement */
+.p-datatable-frozen-column {
+  position: sticky;
+  background: var(--p-surface-0);
+  z-index: 9;
+  box-shadow: 2px 0 4px color-mix(in srgb, var(--p-surface-900), transparent 90%);
+}
+
+.p-datatable-frozen-column-left {
+  left: 0;
+}
+
+.p-datatable-frozen-column-right {
+  right: 0;
+  box-shadow: -2px 0 4px color-mix(in srgb, var(--p-surface-900), transparent 90%);
+}
+
+/* Responsive Table */
+@media screen and (max-width: 960px) {
+  .p-datatable-table {
+    min-width: auto;
+  }
+  
+  .p-datatable-thead > tr > th,
+  .p-datatable-tbody > tr > td {
+    padding: var(--p-datatable-body-cell-sm-padding);
+    font-size: 0.875rem;
+  }
+  
+  /* Hide less important columns on mobile */
+  .p-datatable-hide-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .p-datatable-thead > tr > th,
+  .p-datatable-tbody > tr > td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* Grid Lines Enhancement */
+.p-datatable-gridlines .p-datatable-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.p-datatable-gridlines .p-datatable-thead > tr > th,
+.p-datatable-gridlines .p-datatable-tbody > tr > td,
+.p-datatable-gridlines .p-datatable-tfoot > tr > td {
+  border-bottom: 1px solid var(--p-datatable-body-cell-border-color);
+}
+
+/* Row Expansion Enhancement */
+.p-datatable-row-expansion {
+  background: var(--p-surface-50);
+  border-top: 1px solid var(--p-datatable-body-cell-border-color);
+  border-bottom: 1px solid var(--p-datatable-body-cell-border-color);
+}
+
+.p-datatable-row-expansion > td {
+  padding: 1.5rem;
+}
+
+/* Filter Enhancement */
+.p-datatable-header-cell .p-column-filter {
+  margin-left: auto;
+}
+
+.p-column-filter-overlay {
+  box-shadow: var(--p-datatable-filter-overlay-popover-shadow);
+  border-radius: var(--p-datatable-filter-overlay-popover-border-radius);
+}
+
+/* Status and Badge Enhancements - Light backgrounds with dark text for accessibility */
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 400 !important; /* Normal weight as requested */
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  color: var(--p-text-color, #292929) !important; /* Dark gray text for AA contrast */
+}
+
+.status.ready {
+  background: var(--p-green-100, #e0ecb6) !important; /* Light green background */
+  color: var(--p-text-color, #292929) !important;
+}
+
+.status.review {
+  background: var(--p-orange-100, #FEE5C2) !important; /* Light orange background */
+  color: var(--p-text-color, #292929) !important;
+}
+
+.status.missing {
+  background: var(--p-red-100, #f5d6dc) !important; /* Light red background */
+  color: var(--p-text-color, #292929) !important;
+}
+
+.status.editing {
+  background: var(--p-cyan-100, #c3edf5) !important; /* Light cyan background */
+  color: var(--p-text-color, #292929) !important;
+}
+
+/* Preview Image Enhancement */
+.preview-image {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.preview-image:hover {
+  transform: scale(1.1);
+  border-color: var(--p-primary-400);
+  box-shadow: 0 3px 6px color-mix(in srgb, var(--p-surface-900), transparent 90%);
+}
+
+/* Variant Badges Enhancement */
+
+/* Accessibility Improvements */
+.p-datatable-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.p-datatable-thead > tr > th[aria-sort] {
+  position: relative;
+}
+
+.p-datatable-thead > tr > th[aria-sort="ascending"]::after {
+  content: "↑";
+  position: absolute;
+  right: 0.5rem;
+  color: var(--p-primary-500);
+}
+
+.p-datatable-thead > tr > th[aria-sort="descending"]::after {
+  content: "↓";
+  position: absolute;
+  right: 0.5rem;
+  color: var(--p-primary-500);
+}
+
+/* Focus States */
+.p-datatable-table:focus-within {
+  outline: 2px solid var(--p-focus-ring-color);
+  outline-offset: 2px;
+}
+
+.p-datatable-tbody > tr:focus-within {
+  background: var(--p-datatable-row-hover-background);
+  outline: 1px solid var(--p-focus-ring-color);
+  outline-offset: -1px;
+}
+
+/* Performance Optimization */
+.p-datatable-table {
+  contain: layout style;
+}
+
+.p-datatable-tbody > tr {
+  contain: layout;
+}
+
+/* Print Styles */
+@media print {
+  .p-datatable-table {
+    border-collapse: collapse;
+  }
+  
+  .p-datatable-thead > tr > th,
+  .p-datatable-tbody > tr > td {
+    border: 1px solid #000;
+    padding: 0.5rem;
+  }
+  
+  .p-datatable-row-selected {
+    background: #f0f0f0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .preview-image {
+    display: none;
+  }
+}

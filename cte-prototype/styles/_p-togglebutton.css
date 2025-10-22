@@ -1,0 +1,38 @@
+:root {
+    --p-togglebutton-padding: 0.25rem;
+    --p-togglebutton-border-radius: var(--p-content-border-radius);
+    --p-togglebutton-gap: 0.5rem;
+    --p-togglebutton-font-weight: 500;
+    --p-togglebutton-disabled-background: var(--p-form-field-disabled-background);
+    --p-togglebutton-disabled-border-color: var(--p-form-field-disabled-background);
+    --p-togglebutton-disabled-color: var(--p-form-field-disabled-color);
+    --p-togglebutton-invalid-border-color: var(--p-form-field-invalid-border-color);
+    --p-togglebutton-focus-ring-width: var(--p-focus-ring-width);
+    --p-togglebutton-focus-ring-style: var(--p-focus-ring-style);
+    --p-togglebutton-focus-ring-color: var(--p-focus-ring-color);
+    --p-togglebutton-focus-ring-offset: var(--p-focus-ring-offset);
+    --p-togglebutton-focus-ring-shadow: var(--p-focus-ring-shadow);
+    --p-togglebutton-transition-duration: var(--p-form-field-transition-duration);
+    --p-togglebutton-sm-font-size: var(--p-form-field-sm-font-size);
+    --p-togglebutton-sm-padding: 0.25rem;
+    --p-togglebutton-lg-font-size: var(--p-form-field-lg-font-size);
+    --p-togglebutton-lg-padding: 0.25rem;
+    --p-togglebutton-icon-disabled-color: var(--p-form-field-disabled-color);
+    --p-togglebutton-content-padding: 0.25rem 0.75rem;
+    --p-togglebutton-content-border-radius: var(--p-content-border-radius);
+    --p-togglebutton-content-checked-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.02), 0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+    --p-togglebutton-content-sm-padding: 0.25rem 0.75rem;
+    --p-togglebutton-content-lg-padding: 0.25rem 0.75rem;
+    --p-togglebutton-background: var(--p-surface-100);
+    --p-togglebutton-checked-background: var(--p-surface-100);
+    --p-togglebutton-hover-background: var(--p-surface-100);
+    --p-togglebutton-border-color: var(--p-surface-100);
+    --p-togglebutton-color: var(--p-surface-500);
+    --p-togglebutton-hover-color: var(--p-surface-700);
+    --p-togglebutton-checked-color: var(--p-surface-900);
+    --p-togglebutton-checked-border-color: var(--p-surface-100);
+    --p-togglebutton-content-checked-background: var(--p-surface-0);
+    --p-togglebutton-icon-color: var(--p-surface-500);
+    --p-togglebutton-icon-hover-color: var(--p-surface-700);
+    --p-togglebutton-icon-checked-color: var(--p-surface-900);
+}
