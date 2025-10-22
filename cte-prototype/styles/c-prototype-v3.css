@@ -1,10 +1,10 @@
 @import url("cte-prototype/styles/_p-colors.css");
 @import url("cte-prototype/styles/_p-tokens.css");
 @import url("cte-prototype/styles/_p-button.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-togglebutton.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-datatable.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-datatable-enhanced.css");
-@import url("https://77jb.github.io/77JB/cte-prototype/styles/p-toolbar.css");
+@import url("cte-prototype/styles/_p-togglebutton.css");
+@import url("cte-prototype/styles/_p-datatable.css");
+@import url("cte-prototype/styles/_p-datatable-enhanced.css");
+@import url("cte-prototype/styles/_p-toolbar.css");
 @import url("cte-prototype/styles/_p-table.css");
 
 
