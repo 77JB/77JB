@@ -1209,14 +1209,14 @@ body {
   color: #fff;
   border-color: var(--p-primary-800)
 }
-.cte-toolbar .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton-checked:hover,
+/*.cte-toolbar .p-toolbar-center .p-fluid .p-selectbutton .p-togglebutton-checked:hover,
 .cte-toolbar-switch .p-toolbar-group-start .p-selectbutton .p-togglebutton-checked:hover,
 .p-toolbar-group-start .p-selectbutton .p-togglebutton-checked:hover {
   background: #004085;
   color: #fff;
   border-color: #004085;
   cursor: pointer
-}
+}*/
 .cte-toolbar-switch .p-toolbar-group-start .p-selectbutton .p-togglebutton:hover,
 .p-toolbar-group-start .p-selectbutton .p-togglebutton:hover {
   background: var(--p-surface-0,#fff);
