@@ -1081,7 +1081,7 @@ function switchMainTab(tabName) {
 async function loadProgrammeData() {
   if (programmeData.length === 0) {
     try {
-      const response = await fetch("../JSON/programmes.json");
+      const response = await fetch("https://77jb.github.io/77JB/cte-prototype/json/programmes.json");
       programmeData = await response.json();
       renderProgrammeTable();
     } catch (error) {
@@ -1148,7 +1148,7 @@ function showProgrammeDetails(programmeId) {
 async function loadAusfuehrungenData() {
   if (ausfuehrungenData.length === 0) {
     try {
-      const response = await fetch("../JSON/ausfuehrungen.json");
+      const response = await fetch("https://77jb.github.io/77JB/cte-prototype/json/ausfuehrungen.json");
       ausfuehrungenData = await response.json();
       renderAusfuehrungenTable();
     } catch (error) {
@@ -1940,7 +1940,7 @@ function toggleFileList() {
 }
 
 // Load variant names
-fetch("../JSON/variant-names.json")
+fetch("https://77jb.github.io/77JB/cte-prototype/json/variant-names.json")
   .then((response) => response.json())
   .then((data) => {
     variantNameMap = data;
@@ -1955,7 +1955,7 @@ function getVariantName(key) {
 }
 
 // Load texture files
-fetch("../JSON/textures.json")
+fetch("https://77jb.github.io/77JB/cte-prototype/json/textures.json")
   .then((response) => response.json())
   .then((data) => {
     dekorPoolFiles = data;
