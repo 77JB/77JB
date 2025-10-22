@@ -1,11 +1,11 @@
-@import url("styles/_p-colors.css");
-@import url("styles/_p-tokens.css");
-@import url("styles/_p-button.css");
-@import url("styles/_p-togglebutton.css");
-@import url("styles/_p-datatable.css");
-@import url("styles/_p-datatable-enhanced.css");
-@import url("styles/_p-toolbar.css");
-@import url("styles/_p-table.css");
+@import url("_p-colors.css");
+@import url("_p-tokens.css");
+@import url("_p-button.css");
+@import url("_p-togglebutton.css");
+@import url("_p-datatable.css");
+@import url("_p-datatable-enhanced.css");
+@import url("_p-toolbar.css");
+@import url("_p-table.css");
 
 
 #fileListWrapper {
